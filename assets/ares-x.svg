@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" fill="none">
+<style>
+.f{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif} .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.r{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+.spin-slow{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important} .r{opacity:1}}
+@keyframes fill{from{width:0}to{width:var(--w)}}.bar{animation:fill 1.6s cubic-bezier(.2,.7,.2,1) .6s both}@keyframes glow{0%,100%{stroke-opacity:.35}50%{stroke-opacity:1}}.glow{animation:glow 2.4s ease-in-out infinite}</style>
+<defs><clipPath id="clip"><rect width="1200" height="640" rx="16"/></clipPath></defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="640" fill="#121B2D"/>
+<rect x="40" y="45" width="10" height="10" rx="2" fill="#E10600"/><text x="60" y="56" class="m" font-size="14" letter-spacing="3" fill="#8A97B4">POLE POSITION  ·  FLAGSHIP BUILD</text>
+<rect x="909" y="36" width="251" height="30" rx="15" fill="#F5B14C" fill-opacity=".12" stroke="#F5B14C" stroke-opacity=".5"/>
+<circle cx="927" cy="51" r="4.5" fill="#F5B14C" class="pulse"/>
+<text x="939" y="56" class="m" font-size="13" letter-spacing="1.5" font-weight="700" fill="#F5B14C">IN ACTIVE DEVELOPMENT</text>
+<text x="40" y="112" class="f r" font-size="42" font-weight="800" letter-spacing="-1" fill="#E8EDF7">ARES X <tspan fill="#FF3B30">—</tspan> Titan</text>
+<text x="40" y="148" class="f r" style="animation-delay:.1s" font-size="18" fill="#8A97B4">Sovereign AI intelligence OS — C4ISR-inspired threat intel, decision support &amp; red-team operations.</text>
+<text x="40" y="180" class="m r" style="animation-delay:.15s" font-size="13" letter-spacing="1.5" fill="#5B6884">ARCHITECT &amp; PROJECT LEAD  ·  MAR 2025 – PRESENT  ·  AI-ASSISTED BUILD (CLAUDE OPUS)</text>
+<rect x="40" y="204" width="1120" height="150" rx="12" fill="#16213A" stroke="#243251"/>
+<text x="60" y="234" class="m" font-size="12" letter-spacing="2" fill="#5B6884">INFERENCE PIPELINE</text>
+<line x1="230" y1="287.0" x2="260" y2="287.0" stroke="#243251" stroke-width="2"/>
+<circle cy="287.0" r="3.5" fill="#A78BFA"><animate attributeName="cx" values="230;260" dur="1.2s" begin="0.00s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.00s" repeatCount="indefinite"/></circle>
+<circle cy="287.0" r="3.5" fill="#A78BFA"><animate attributeName="cx" values="230;260" dur="1.2s" begin="0.60s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.60s" repeatCount="indefinite"/></circle>
+<line x1="460" y1="287.0" x2="490" y2="287.0" stroke="#243251" stroke-width="2"/>
+<circle cy="287.0" r="3.5" fill="#FF3B30"><animate attributeName="cx" values="460;490" dur="1.2s" begin="0.15s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.15s" repeatCount="indefinite"/></circle>
+<circle cy="287.0" r="3.5" fill="#FF3B30"><animate attributeName="cx" values="460;490" dur="1.2s" begin="0.75s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.75s" repeatCount="indefinite"/></circle>
+<line x1="780" y1="287.0" x2="810" y2="287.0" stroke="#243251" stroke-width="2"/>
+<circle cy="287.0" r="3.5" fill="#F5B14C"><animate attributeName="cx" values="780;810" dur="1.2s" begin="0.30s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.30s" repeatCount="indefinite"/></circle>
+<circle cy="287.0" r="3.5" fill="#F5B14C"><animate attributeName="cx" values="780;810" dur="1.2s" begin="0.90s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.90s" repeatCount="indefinite"/></circle>
+<line x1="970" y1="287.0" x2="1000" y2="287.0" stroke="#243251" stroke-width="2"/>
+<circle cy="287.0" r="3.5" fill="#4CC38A"><animate attributeName="cx" values="970;1000" dur="1.2s" begin="0.45s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="0.45s" repeatCount="indefinite"/></circle>
+<circle cy="287.0" r="3.5" fill="#4CC38A"><animate attributeName="cx" values="970;1000" dur="1.2s" begin="1.05s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.2s" begin="1.05s" repeatCount="indefinite"/></circle>
+<g class="r" style="animation-delay:0.20s"><rect x="60" y="254" width="170" height="66" rx="10" fill="#5C8DFF" fill-opacity=".08" stroke="#5C8DFF" stroke-opacity=".55" class=""/><rect x="60" y="268" width="3" height="38" rx="1.5" fill="#5C8DFF"/><text x="76" y="282" class="f" font-size="16" font-weight="700" fill="#E8EDF7">Signals</text><text x="76" y="304" class="m" font-size="12" fill="#8A97B4">OSINT · threat feeds</text></g>
+<g class="r" style="animation-delay:0.30s"><rect x="260" y="254" width="200" height="66" rx="10" fill="#A78BFA" fill-opacity=".08" stroke="#A78BFA" stroke-opacity=".55" class=""/><rect x="260" y="268" width="3" height="38" rx="1.5" fill="#A78BFA"/><text x="276" y="282" class="f" font-size="16" font-weight="700" fill="#E8EDF7">Dispatcher</text><text x="276" y="304" class="m" font-size="12" fill="#8A97B4">Gemini function-calling</text></g>
+<g class="r" style="animation-delay:0.40s"><rect x="490" y="254" width="290" height="66" rx="10" fill="#FF3B30" fill-opacity=".08" stroke="#FF3B30" stroke-opacity=".55" class="glow"/><rect x="490" y="268" width="3" height="38" rx="1.5" fill="#FF3B30"/><text x="506" y="282" class="f" font-size="16" font-weight="700" fill="#E8EDF7">Multi-agent router</text><text x="506" y="304" class="m" font-size="12" fill="#8A97B4">Gemini → Groq → Ollama → OpenRouter</text></g>
+<g class="r" style="animation-delay:0.50s"><rect x="810" y="254" width="160" height="66" rx="10" fill="#F5B14C" fill-opacity=".08" stroke="#F5B14C" stroke-opacity=".55" class=""/><rect x="810" y="268" width="3" height="38" rx="1.5" fill="#F5B14C"/><text x="826" y="282" class="f" font-size="16" font-weight="700" fill="#E8EDF7">Approval gate</text><text x="826" y="304" class="m" font-size="12" fill="#8A97B4">human sign-off</text></g>
+<g class="r" style="animation-delay:0.60s"><rect x="1000" y="254" width="140" height="66" rx="10" fill="#4CC38A" fill-opacity=".08" stroke="#4CC38A" stroke-opacity=".55" class=""/><rect x="1000" y="268" width="3" height="38" rx="1.5" fill="#4CC38A"/><text x="1016" y="282" class="f" font-size="16" font-weight="700" fill="#E8EDF7">Recommend</text><text x="1016" y="304" class="m" font-size="12" fill="#8A97B4">never auto-acts</text></g>
+<text x="60" y="342" class="m" font-size="12" fill="#5B6884">Falls back down the chain on rate limits or outages · runs fully local via Ollama when needed</text>
+<g class="r" style="animation-delay:0.50s">
+<rect x="40" y="378" width="265" height="108" rx="12" fill="#16213A" stroke="#243251"/>
+<text x="62" y="432" class="f" font-size="40" font-weight="800" letter-spacing="-1" fill="#E8EDF7">235</text>
+<text x="62" y="460" class="m" font-size="12" letter-spacing="2" fill="#5B6884">FILES</text>
+</g>
+<g class="r" style="animation-delay:0.60s">
+<rect x="325" y="378" width="265" height="108" rx="12" fill="#16213A" stroke="#243251"/>
+<text x="347" y="432" class="f" font-size="40" font-weight="800" letter-spacing="-1" fill="#E8EDF7">90+</text>
+<text x="347" y="460" class="m" font-size="12" letter-spacing="2" fill="#5B6884">MODULES</text>
+</g>
+<g class="r" style="animation-delay:0.70s">
+<rect x="610" y="378" width="265" height="108" rx="12" fill="#16213A" stroke="#243251"/>
+<text x="632" y="432" class="f" font-size="40" font-weight="800" letter-spacing="-1" fill="#4CC38A">114/114</text>
+<text x="632" y="460" class="m" font-size="12" letter-spacing="2" fill="#5B6884">TESTS PASSING</text>
+<rect x="632" y="470" width="221" height="4" rx="2" fill="#243251"/>
+<rect x="632" y="470" height="4" rx="2" fill="#4CC38A" class="bar" style="--w:221px" width="221"/>
+</g>
+<g class="r" style="animation-delay:0.80s">
+<rect x="895" y="378" width="265" height="108" rx="12" fill="#16213A" stroke="#243251"/>
+<text x="917" y="432" class="f" font-size="40" font-weight="800" letter-spacing="-1" fill="#E8EDF7">12+</text>
+<text x="917" y="460" class="m" font-size="12" letter-spacing="2" fill="#5B6884">INTEGRATED PHASES</text>
+</g>
+<g class="r" style="animation-delay:0.70s"><rect x="40" y="517" width="8" height="8" rx="2" fill="#5C8DFF"/><text x="60" y="526" class="f" font-size="16" fill="#E8EDF7">Native Kali Linux app — systemd + GTK/pywebview on FastAPI</text><text x="580" y="526" text-anchor="end" class="m" font-size="11" letter-spacing="1" fill="#4CC38A">LIVE</text></g>
+<g class="r" style="animation-delay:0.78s"><rect x="610" y="517" width="8" height="8" rx="2" fill="#F5B14C"/><text x="630" y="526" class="f" font-size="16" fill="#E8EDF7">Hard human-approval gates: detects, investigates, recommends</text><text x="1150" y="526" text-anchor="end" class="m" font-size="11" letter-spacing="1" fill="#4CC38A">LIVE</text></g>
+<g class="r" style="animation-delay:0.86s"><rect x="40" y="553" width="8" height="8" rx="2" fill="#A78BFA"/><text x="60" y="562" class="f" font-size="16" fill="#E8EDF7">Post-quantum cryptography with liboqs</text><text x="580" y="562" text-anchor="end" class="m" font-size="11" letter-spacing="1" fill="#5B6884">IN PROGRESS</text></g>
+<g class="r" style="animation-delay:0.94s"><rect x="610" y="553" width="8" height="8" rx="2" fill="#4FD1C5"/><text x="630" y="562" class="f" font-size="16" fill="#E8EDF7">Enterprise RAG + federated search</text><text x="1150" y="562" text-anchor="end" class="m" font-size="11" letter-spacing="1" fill="#5B6884">IN PROGRESS</text></g>
+<line x1="40" y1="584" x2="1160" y2="584" stroke="#243251"/>
+<text x="40" y="614" class="m" font-size="13" letter-spacing="1" fill="#F5B14C">VISION →</text>
+<text x="122" y="614" class="f" font-size="15" fill="#8A97B4">a Palantir / Recorded Future / Maltego-class platform, pitched through iDEX &amp; DRDO</text>
+</g>
+<rect x=".5" y=".5" width="1199" height="639" rx="16" stroke="#243251"/>
+</svg>

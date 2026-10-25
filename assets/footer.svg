@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="130" viewBox="0 0 1200 130" fill="none">
+<style>
+.f{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif} .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.r{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+.spin-slow{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important} .r{opacity:1}}
+</style>
+<defs><clipPath id="clip"><rect width="1200" height="130" rx="16"/></clipPath><pattern id="chk0" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="#0A0A0A"/><rect width="12" height="12" fill="#F2F2F2"/><rect x="12" y="12" width="12" height="12" fill="#F2F2F2"/><animateTransform attributeName="patternTransform" type="translate" from="0 0" to="24 0" dur="0.8s" repeatCount="indefinite"/></pattern></defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="130" fill="#0B1220"/>
+<rect y="0" width="1200" height="24" fill="url(#chk0)"/>
+<text x="600.0" y="80" text-anchor="middle" class="f" font-size="24" font-weight="700" font-style="italic" fill="#E8EDF7">Lights out and away we go.</text>
+<text x="600.0" y="110" text-anchor="middle" class="m" font-size="12" letter-spacing="3" fill="#5B6884">H S BHARATH SURYA  ·  AI SYSTEMS ARCHITECT  ·  BENGALURU</text>
+</g>
+<rect x=".5" y=".5" width="1199" height="129" rx="16" stroke="#243251"/>
+</svg>

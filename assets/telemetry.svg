@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="250" viewBox="0 0 1200 250" fill="none">
+<style>
+.f{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif} .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.r{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+.spin-slow{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important} .r{opacity:1}}
+.gb{transform-box:fill-box;transform-origin:bottom;animation:grow 1.2s cubic-bezier(.2,.7,.2,1) both}@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}</style>
+<defs><clipPath id="clip"><rect width="1200" height="250" rx="16"/></clipPath></defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="250" fill="#121B2D"/>
+<rect x="40" y="45" width="10" height="10" rx="2" fill="#E10600"/><text x="60" y="56" class="m" font-size="14" letter-spacing="3" fill="#8A97B4">SEASON TELEMETRY  ·  GITHUB</text><text x="1160" y="56" text-anchor="end" class="m" font-size="14" letter-spacing="2" fill="#F5B14C">ROOKIE SEASON · SINCE JUN 2026</text>
+<g class="r" style="animation-delay:0.10s"><rect x="40" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="60" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">44</text><text x="60" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">CONTRIBUTIONS</text></g>
+<g class="r" style="animation-delay:0.18s"><rect x="220" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="240" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">18</text><text x="240" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">PULL REQUESTS</text></g>
+<g class="r" style="animation-delay:0.26s"><rect x="400" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="420" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">11</text><text x="420" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">COMMITS</text></g>
+<g class="r" style="animation-delay:0.34s"><rect x="580" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="600" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">26 Oct</text><text x="600" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">LATEST LAP</text></g>
+<rect x="760" y="86" width="400" height="124" rx="12" fill="#16213A" stroke="#243251"/>
+<text x="780" y="110" class="m" font-size="12" letter-spacing="2" fill="#5B6884">PACE BY MONTH</text>
+<rect x="799.0" y="183.0" width="34.0" height="3.0" rx="3" fill="#5C8DFF" fill-opacity="1" class="gb" style="animation-delay:0.30s"/>
+<text x="816.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">JUN</text>
+<rect x="871.0" y="183.0" width="34.0" height="3.0" rx="3" fill="#5C8DFF" fill-opacity="0.35" class="gb" style="animation-delay:0.40s"/>
+<text x="888.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">JUL</text>
+<rect x="943.0" y="183.0" width="34.0" height="3.0" rx="3" fill="#5C8DFF" fill-opacity="0.35" class="gb" style="animation-delay:0.50s"/>
+<text x="960.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">AUG</text>
+<rect x="1015.0" y="128.0" width="34.0" height="58.0" rx="3" fill="#FF3B30" fill-opacity="1" class="gb" style="animation-delay:0.60s"/>
+<text x="1032.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">SEP</text>
+<rect x="1087.0" y="160.9" width="34.0" height="25.1" rx="3" fill="#5C8DFF" fill-opacity="1" class="gb" style="animation-delay:0.70s"/>
+<text x="1104.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">OCT</text>
+</g>
+<rect x=".5" y=".5" width="1199" height="249" rx="16" stroke="#243251"/>
+</svg>

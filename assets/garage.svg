@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" fill="none">
+<style>
+.f{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif} .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.r{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+.spin-slow{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important} .r{opacity:1}}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}.eq{transform-box:fill-box;transform-origin:bottom;animation:eq .9s ease-in-out infinite}@keyframes candle{0%{transform:scaleY(.2);opacity:0}30%,100%{transform:scaleY(1);opacity:1}}.cd{transform-box:fill-box;transform-origin:bottom;animation:candle 3s ease-out infinite}</style>
+<defs><clipPath id="clip"><rect width="1200" height="300" rx="16"/></clipPath></defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="300" fill="#121B2D"/>
+<rect x="40" y="45" width="10" height="10" rx="2" fill="#E10600"/><text x="60" y="56" class="m" font-size="14" letter-spacing="3" fill="#8A97B4">ALSO IN THE GARAGE</text><text x="1160" y="56" text-anchor="end" class="m" font-size="14" letter-spacing="2" fill="#F5B14C">3 BUILDS</text>
+<g class="r" style="animation-delay:0.10s">
+<rect x="40" y="84" width="360" height="180" rx="12" fill="#16213A" stroke="#243251"/>
+<rect x="62" y="106" width="52" height="52" rx="12" fill="#FF3B30" fill-opacity=".12" stroke="#FF3B30" stroke-opacity=".4"/>
+<rect x="72" y="130" width="4" height="18" rx="2" fill="#FF3B30" class="eq" style="animation-delay:0.00s"/>
+<rect x="79" y="118" width="4" height="30" rx="2" fill="#FF3B30" class="eq" style="animation-delay:0.12s"/>
+<rect x="86" y="124" width="4" height="24" rx="2" fill="#FF3B30" class="eq" style="animation-delay:0.24s"/>
+<rect x="93" y="114" width="4" height="34" rx="2" fill="#FF3B30" class="eq" style="animation-delay:0.36s"/>
+<rect x="100" y="132" width="4" height="16" rx="2" fill="#FF3B30" class="eq" style="animation-delay:0.48s"/>
+<text x="62" y="192" class="f" font-size="19" font-weight="700" fill="#E8EDF7">Voice AI · 3D interface</text>
+<text x="62" y="220" class="f" font-size="15" fill="#8A97B4">Real-time voice assistant</text>
+<text x="62" y="244" class="f" font-size="15" fill="#8A97B4">wrapped in a full 3D front end</text>
+</g>
+<g class="r" style="animation-delay:0.22s">
+<rect x="420" y="84" width="360" height="180" rx="12" fill="#16213A" stroke="#243251"/>
+<rect x="442" y="106" width="52" height="52" rx="12" fill="#F5B14C" fill-opacity=".12" stroke="#F5B14C" stroke-opacity=".4"/>
+<g class="spin-slow"><path d="M480.5,132.0 L484.7,135.3 L483.7,138.5 L478.4,138.9 L476.8,140.8 L477.4,146.1 L474.5,147.7 L470.4,144.3 L468.0,144.5 L464.7,148.7 L461.5,147.7 L461.1,142.4 L459.2,140.8 L453.9,141.4 L452.3,138.5 L455.7,134.4 L455.5,132.0 L451.3,128.7 L452.3,125.5 L457.6,125.1 L459.2,123.2 L458.6,117.9 L461.5,116.3 L465.6,119.7 L468.0,119.5 L471.3,115.3 L474.5,116.3 L474.9,121.6 L476.8,123.2 L482.1,122.6 L483.7,125.5 L480.3,129.6 Z" fill="#F5B14C"/><circle cx="468.0" cy="132" r="5.5" fill="#16213A"/></g>
+<text x="442" y="192" class="f" font-size="19" font-weight="700" fill="#E8EDF7">Automation engine</text>
+<text x="442" y="220" class="f" font-size="15" fill="#8A97B4">Runs tasks from trigger to done</text>
+<text x="442" y="244" class="f" font-size="15" fill="#8A97B4">n8n / Zapier + API integrations</text>
+</g>
+<g class="r" style="animation-delay:0.34s">
+<rect x="800" y="84" width="360" height="180" rx="12" fill="#16213A" stroke="#243251"/>
+<rect x="822" y="106" width="52" height="52" rx="12" fill="#4FD1C5" fill-opacity=".12" stroke="#4FD1C5" stroke-opacity=".4"/>
+<line x1="835.0" y1="116" x2="835.0" y2="147" stroke="#4CC38A" stroke-width="1.2"/>
+<rect x="833.0" y="120" width="4" height="24" rx="1" fill="#4CC38A" class="cd" style="animation-delay:0.00s"/>
+<line x1="842.5" y1="122" x2="842.5" y2="147" stroke="#FF3B30" stroke-width="1.2"/>
+<rect x="840.5" y="126" width="4" height="18" rx="1" fill="#FF3B30" class="cd" style="animation-delay:0.20s"/>
+<line x1="850.0" y1="114" x2="850.0" y2="151" stroke="#4CC38A" stroke-width="1.2"/>
+<rect x="848.0" y="118" width="4" height="30" rx="1" fill="#4CC38A" class="cd" style="animation-delay:0.40s"/>
+<line x1="857.5" y1="124" x2="857.5" y2="145" stroke="#FF3B30" stroke-width="1.2"/>
+<rect x="855.5" y="128" width="4" height="14" rx="1" fill="#FF3B30" class="cd" style="animation-delay:0.60s"/>
+<line x1="865.0" y1="110" x2="865.0" y2="151" stroke="#4CC38A" stroke-width="1.2"/>
+<rect x="863.0" y="114" width="4" height="34" rx="1" fill="#4CC38A" class="cd" style="animation-delay:0.80s"/>
+<text x="822" y="192" class="f" font-size="19" font-weight="700" fill="#E8EDF7">NIFTY futures research</text>
+<text x="822" y="220" class="f" font-size="15" fill="#8A97B4">Trading research tool for</text>
+<text x="822" y="244" class="f" font-size="15" fill="#8A97B4">NIFTY futures analysis</text>
+</g>
+</g>
+<rect x=".5" y=".5" width="1199" height="299" rx="16" stroke="#243251"/>
+</svg>
