@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="banner.svg" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A0A0A,50:FF1E1E,100:FFD200&height=220&section=header&text=BHARATH%20SURYA&fontSize=52&fontColor=FFFFFF&fontAlignY=32&animation=fadeIn&desc=AI%20Systems%20Architect%20%C2%B7%20AI-Assisted%20Development%20%C2%B7%20Automation%20%C2%B7%20LLM%20Workflows&descAlignY=52&descSize=16&descColor=FFD200" width="100%"/>
+
+<img src="https://readme-typing-svg.demolab.com/?lines=Architecting+with+AI%2C+not+just+typing+code;Currently+building+ARES+X+%E2%80%94+a+sovereign+AI+intel+OS;Open+to+freelance+%26+automation+work+%F0%9F%8F%81&font=Fira+Code&center=true&width=620&height=40&color=FF1E1E&vCenter=true&size=18&pause=1400" />
 
 </div>
 
@@ -21,7 +23,7 @@
 
 <table>
 <tr>
-<td width="70%" valign="top">
+<td width="68%" valign="top">
 
 ### 🏎️ About Me
 
@@ -35,9 +37,11 @@
 - 📬 How to reach me: [LinkedIn](https://www.linkedin.com/in/h-s-bharath-surya-363623432)
 
 </td>
-<td width="30%" align="center" valign="middle">
+<td width="32%" align="center" valign="middle">
 
-<img src="car.svg" width="160"/>
+<img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3ce.svg" width="150"/>
+
+<img src="https://img.shields.io/badge/-P1-FFD200?style=for-the-badge&logoColor=black"/>
 
 </td>
 </tr>
@@ -45,7 +49,7 @@
 
 <br/>
 
-### 🏎️ Pole Position Project — ARES X (Titan)
+### 🏆 Pole Position Project — ARES X (Titan)
 
 > **Architect & Project Lead** · Mar 2025 – Present · AI-assisted build via Claude Opus
 
@@ -71,12 +75,12 @@ A **sovereign AI intelligence OS** — C4ISR-inspired, built for autonomous thre
 
 ### 📊 Stats
 
-<p>
+<p align="center">
 <img src="https://github-readme-streak-stats.herokuapp.com/?user=satanonsteroids2024-zzz&theme=radical&hide_border=true&background=0D1117&ring=FF1E1E&fire=FFD200&currStreakLabel=FFD200&sideLabels=FFFFFF&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=777777" height="180"/>
 <img src="https://github-readme-stats.vercel.app/api?username=satanonsteroids2024-zzz&show_icons=true&include_all_commits=true&count_private=true&theme=radical&hide_border=true&bg_color=0D1117&title_color=FFD200&icon_color=FF1E1E&text_color=FFFFFF" height="180"/>
 </p>
 
-<p>
+<p align="center">
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=satanonsteroids2024-zzz&theme=github_dark" height="150"/>
 </p>
 
@@ -94,4 +98,4 @@ A **sovereign AI intelligence OS** — C4ISR-inspired, built for autonomous thre
 
 <br/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,50:FF1E1E,100:FFD200&height=6&width=100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:FFD200,50:FF1E1E,100:0A0A0A&height=100&section=footer" width="100%"/>
