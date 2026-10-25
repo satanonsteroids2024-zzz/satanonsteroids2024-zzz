@@ -1,43 +1,47 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FF1E1E,50:0A0A0A,100:FFD200&height=180&section=header&text=BHARATH%20SURYA&fontSize=58&fontColor=FFFFFF&fontAlignY=50&animation=fadeIn&desc=AI-Assisted%20Systems%20Architect%20%E2%80%A2%20Lights%20Out%20%26%20Away%20We%20Go&descAlignY=75&descSize=18&descColor=FFD200" width="100%"/>
-
-<a href="https://www.linkedin.com/in/h-s-bharath-surya-363623432">
-  <img src="https://readme-typing-svg.demolab.com/?lines=Architecting+with+AI%2C+not+just+typing+code;Python+%7C+Automation+%7C+LLM+Workflows;Currently+open+to+freelance+%26+automation+builds;Pole+position+for+your+next+hire+%F0%9F%8F%81&font=Fira+Code&center=true&width=620&height=50&color=FF1E1E&vCenter=true&size=22&pause=1200" alt="Typing SVG" />
-</a>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FFD200,100:FF1E1E&height=3&width=100%"/>
+<img src="banner.svg" width="100%"/>
 
 </div>
-
-### 🏁 Starting Grid
-
-I'm **H S Bharath Surya**, a Computer Science student at **Newton School of Technology**, Bengaluru. I build with AI in the driver's seat of execution — I design the system, set the strategy, and let AI handle the pit work. Think of me as the **race engineer**, not just the driver.
-
-So far that's meant:
-- 🎙️ A **real-time voice AI app** with a full 3D interface
-- ⚙️ An **end-to-end automation system** that handles tasks start to finish, zero manual pit stops
-- 📈 A **trading research tool** for NIFTY futures
-
-Currently **open to freelance builds, automation projects, and technical writing/editing work** — if you've got something that needs to go from 0 to 100 fast, let's talk.
 
 <br/>
 
-<div align="center">
+### 🏁 Connect with me
 
-### 🛠️ Garage — Tech Stack
+<p>
+<a href="https://www.linkedin.com/in/h-s-bharath-surya-363623432">
+<img src="https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+<a href="https://github.com/satanonsteroids2024-zzz">
+<img src="https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+</p>
 
-<img src="https://skillicons.dev/icons?i=python,nodejs,javascript,git,github,docker,linux,vscode,figma&theme=dark" />
+<br/>
 
-<br/><br/>
+<table>
+<tr>
+<td width="70%" valign="top">
 
-<img src="https://img.shields.io/badge/AI%20%26%20LLM%20Workflows-FF1E1E?style=for-the-badge&logo=openai&logoColor=white"/>
-<img src="https://img.shields.io/badge/Prompt%20Engineering-0A0A0A?style=for-the-badge&logo=anthropic&logoColor=FFD200"/>
-<img src="https://img.shields.io/badge/Automation-FFD200?style=for-the-badge&logo=zapier&logoColor=black"/>
-<img src="https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white"/>
-<img src="https://img.shields.io/badge/API%20Integrations-FF1E1E?style=for-the-badge&logo=fastapi&logoColor=white"/>
+### 🏎️ About Me
 
-</div>
+- 🎓 CS Junior @ **Newton School of Technology**, Bengaluru
+- 🤖 I **architect** with AI, rather than typing every line by hand
+- 🔧 Code 💻 → Deploy 🚀 → Iterate 🔁 → Repeat
+- 🔐 Currently building **ARES X** — a sovereign AI intelligence OS for red-team ops
+- 🧠 Learning: multi-agent orchestration, local-LLM routing, post-quantum crypto
+- 🏁 Fun fact: I'd rather design the race strategy than just drive one lap
+- 💼 Open to: **freelance builds, automation projects, technical writing**
+- 📬 How to reach me: [LinkedIn](https://www.linkedin.com/in/h-s-bharath-surya-363623432)
+
+</td>
+<td width="30%" align="center" valign="middle">
+
+<img src="car.svg" width="160"/>
+
+</td>
+</tr>
+</table>
 
 <br/>
 
@@ -57,8 +61,6 @@ A **sovereign AI intelligence OS** — C4ISR-inspired, built for autonomous thre
 | 🔐 Security | Post-quantum cryptography (liboqs), enterprise RAG, federated search — in progress |
 | ✅ Build health | 235 files · 90+ modules · **114/114 tests passing** |
 
-<br/>
-
 <div align="center">
 
 **Also in the garage:** 🎙️ real-time voice AI with a 3D interface · ⚙️ end-to-end task automation system · 📈 NIFTY futures trading research tool
@@ -67,32 +69,29 @@ A **sovereign AI intelligence OS** — C4ISR-inspired, built for autonomous thre
 
 <br/>
 
+### 📊 Stats
+
+<p>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=satanonsteroids2024-zzz&theme=radical&hide_border=true&background=0D1117&ring=FF1E1E&fire=FFD200&currStreakLabel=FFD200&sideLabels=FFFFFF&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=777777" height="180"/>
+<img src="https://github-readme-stats.vercel.app/api?username=satanonsteroids2024-zzz&show_icons=true&include_all_commits=true&count_private=true&theme=radical&hide_border=true&bg_color=0D1117&title_color=FFD200&icon_color=FF1E1E&text_color=FFFFFF" height="180"/>
+</p>
+
+<p>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=satanonsteroids2024-zzz&theme=github_dark" height="150"/>
+</p>
+
+<br/>
+
+### 🏆 Race Pace — Contribution Activity
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=satanonsteroids2024-zzz&theme=react-dark&bg_color=0D1117&color=FFD200&line=FF1E1E&point=FFFFFF&area=true&area_color=FF1E1E&hide_border=true" width="100%"/>
+
+<br/><br/>
+
 <div align="center">
-
-### 📊 Telemetry
-
-<img src="https://github-readme-stats.vercel.app/api?username=satanonsteroids2024-zzz&show_icons=true&theme=red&hide_border=true&bg_color=0D1117&title_color=FFD200&icon_color=FF1E1E&text_color=C9D1D9" height="165"/>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=satanonsteroids2024-zzz&theme=red&hide_border=true&background=0D1117&ring=FF1E1E&fire=FFD200&currStreakLabel=FFD200" height="165"/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=satanonsteroids2024-zzz&layout=compact&theme=red&hide_border=true&bg_color=0D1117&title_color=FFD200&text_color=C9D1D9" height="165"/>
-
+<i>Lights out and away we go. 🏁</i>
 </div>
 
 <br/>
 
-<div align="center">
-
-### 🏆 Podium — Let's Connect
-
-<a href="https://www.linkedin.com/in/h-s-bharath-surya-363623432">
-  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-</a>
-<img src="https://img.shields.io/badge/Status-Open%20to%20Freelance%20%26%20Automation%20Work-FFD200?style=for-the-badge&logo=target&logoColor=black"/>
-
-<br/><br/>
-
-<i>"Lights out and away we go."</i>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,50:FF1E1E,100:FFD200&height=100&section=footer&animation=fadeIn" width="100%"/>
-
-</div>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,50:FF1E1E,100:FFD200&height=6&width=100%"/>
