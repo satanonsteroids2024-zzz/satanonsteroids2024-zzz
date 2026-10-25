@@ -24,7 +24,7 @@ DARK_SLOT = "#1A2236"
 
 BASE_CSS = f"""
 .f{{font-family:{FONT}}} .m{{font-family:{MONO}}}
-@keyframes rise{{from{{opacity:0;transform:translateY(14px)}}to{{opacity:1;transform:none}}}}
+@keyframes rise{{from{{transform:translateY(12px)}}to{{transform:none}}}}
 .r{{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}}
 @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.25}}}}
 .pulse{{animation:pulse 1.6s ease-in-out infinite}}
