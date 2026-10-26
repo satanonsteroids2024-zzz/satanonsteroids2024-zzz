@@ -14,9 +14,9 @@
 <g clip-path="url(#clip)">
 <rect width="1200" height="250" fill="#121B2D"/>
 <rect x="40" y="45" width="10" height="10" rx="2" fill="#E10600"/><text x="60" y="56" class="m" font-size="14" letter-spacing="3" fill="#8A97B4">SEASON TELEMETRY  ·  GITHUB</text><text x="1160" y="56" text-anchor="end" class="m" font-size="14" letter-spacing="2" fill="#F5B14C">ROOKIE SEASON · SINCE JUN 2026</text>
-<g class="r" style="animation-delay:0.10s"><rect x="40" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="60" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">44</text><text x="60" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">CONTRIBUTIONS</text></g>
+<g class="r" style="animation-delay:0.10s"><rect x="40" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="60" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">46</text><text x="60" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">CONTRIBUTIONS</text></g>
 <g class="r" style="animation-delay:0.18s"><rect x="220" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="240" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">18</text><text x="240" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">PULL REQUESTS</text></g>
-<g class="r" style="animation-delay:0.26s"><rect x="400" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="420" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">11</text><text x="420" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">COMMITS</text></g>
+<g class="r" style="animation-delay:0.26s"><rect x="400" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="420" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">13</text><text x="420" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">COMMITS</text></g>
 <g class="r" style="animation-delay:0.34s"><rect x="580" y="86" width="164" height="124" rx="12" fill="#16213A" stroke="#243251"/><text x="600" y="146" class="f" font-size="38" font-weight="800" letter-spacing="-1" fill="#E8EDF7">26 Oct</text><text x="600" y="176" class="m" font-size="12" letter-spacing="2" fill="#5B6884">LATEST LAP</text></g>
 <rect x="760" y="86" width="400" height="124" rx="12" fill="#16213A" stroke="#243251"/>
 <text x="780" y="110" class="m" font-size="12" letter-spacing="2" fill="#5B6884">PACE BY MONTH</text>
@@ -28,7 +28,7 @@
 <text x="960.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">AUG</text>
 <rect x="1015.0" y="128.0" width="34.0" height="58.0" rx="3" fill="#FF3B30" fill-opacity="1" class="gb" style="animation-delay:0.60s"/>
 <text x="1032.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">SEP</text>
-<rect x="1087.0" y="160.9" width="34.0" height="25.1" rx="3" fill="#5C8DFF" fill-opacity="1" class="gb" style="animation-delay:0.70s"/>
+<rect x="1087.0" y="157.0" width="34.0" height="29.0" rx="3" fill="#5C8DFF" fill-opacity="1" class="gb" style="animation-delay:0.70s"/>
 <text x="1104.0" y="204" text-anchor="middle" class="m" font-size="11" fill="#5B6884">OCT</text>
 </g>
 <rect x=".5" y=".5" width="1199" height="249" rx="16" stroke="#243251"/>

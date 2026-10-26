@@ -1,6 +1,8 @@
 """Generate the animated SVG sections for the GitHub profile README.
 
-Usage: python3 scripts/build_assets.py <github-graphql-dump.json>
+Usage:
+  gh api graphql -F login=<user> -f query="$(cat scripts/stats_query.graphql)" > stats.json
+  python3 scripts/build_assets.py stats.json
 """
 import json
 import math
@@ -436,13 +438,15 @@ def garage():
 
 # ---------------------------------------------------------------- telemetry
 def telemetry(data):
-    v = data["data"]["viewer"]
+    v = data["data"].get("user") or data["data"]["viewer"]
     cc = v["contributionsCollection"]
     days = [d for w in cc["contributionCalendar"]["weeks"] for d in w["contributionDays"]]
     created = date.fromisoformat(v["createdAt"][:10])
     months = OrderedDict()
     y, m = created.year, created.month
     last = date.fromisoformat(days[-1]["date"])
+    active = [d["date"] for d in days if d["contributionCount"] > 0]
+    latest_lap = date.fromisoformat(active[-1]) if active else None
     while (y, m) <= (last.year, last.month):
         months[(y, m)] = 0
         m += 1
@@ -460,7 +464,7 @@ def telemetry(data):
         (str(cc["contributionCalendar"]["totalContributions"]), "CONTRIBUTIONS"),
         (str(v["pullRequests"]["totalCount"]), "PULL REQUESTS"),
         (str(cc["totalCommitContributions"]), "COMMITS"),
-        (last.strftime("%d %b"), "LATEST LAP"),
+        (latest_lap.strftime("%d %b") if latest_lap else "—", "LATEST LAP"),
     ]
     tw = 164
     for i, (num, label) in enumerate(tiles):
