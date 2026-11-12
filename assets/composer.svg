@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="214" viewBox="0 0 1200 214" role="img" aria-labelledby="t d">
+<title id="t">Prompt box</title>
+<desc id="d">A glass prompt box that types “What are we building next?”, with attach, web, voice and Auto / Fast / Think controls.</desc>
+<style>
+.mono{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace} .sans{font-family:Geist,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif} .serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif}
+@keyframes pulse{0%,100%{transform:scale(1,1)}45%{transform:scale(.93,1.06)}}
+@keyframes fa{0%,33.3%{opacity:1}33.4%,100%{opacity:0}}
+@keyframes fb{0%,33.3%{opacity:0}33.4%,66.6%{opacity:1}66.7%,100%{opacity:0}}
+@keyframes fc{0%,66.6%{opacity:0}66.7%,100%{opacity:1}}
+@keyframes driftA{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-24px)}}
+@keyframes driftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,-16px)}}
+@keyframes twinkle{0%,100%{opacity:.08}50%{opacity:.75}}
+.bell{transform-box:fill-box;transform-origin:50% 0;animation:pulse 3.6s ease-in-out infinite}
+.fa{animation:fa 1.8s steps(1) infinite} .fb{animation:fb 1.8s steps(1) infinite} .fc{animation:fc 1.8s steps(1) infinite}
+.dA{animation:driftA 9s ease-in-out infinite} .dB{animation:driftB 11s ease-in-out infinite}
+.tw{animation:twinkle 4s ease-in-out infinite}
+
+@keyframes type{0%{transform:scaleX(0)}38%{transform:scaleX(1)}84%{transform:scaleX(1)}92%{transform:scaleX(0)}100%{transform:scaleX(0)}}
+@keyframes cur{0%{transform:translateX(0)}38%{transform:translateX(343.2px)}84%{transform:translateX(343.2px)}92%{transform:translateX(0)}100%{transform:translateX(0)}}
+.ty{transform-origin:104px 0;transform-box:view-box;animation:type 9s steps(26,end) infinite}
+.cu{animation:cur 9s steps(26,end) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.1}} .blink{animation:blink 1s steps(1) infinite}
+@keyframes mode{0%,28%{transform:translateX(0)}33.3%,61%{transform:translateX(72px)}66.6%,94%{transform:translateX(144px)}100%{transform:translateX(0)}}
+.mode{animation:mode 9s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes glowp{0%,100%{opacity:.55}50%{opacity:1}} .gp{animation:glowp 3s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs><pattern id="grid" width="10" height="15" patternUnits="userSpaceOnUse"><path d="M10 0V15M0 15H10" stroke="#fff" stroke-opacity=".035" fill="none"/></pattern>
+<radialGradient id="g1" cx="50%" cy="0%" r="70%"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".16"/><stop offset="1" stop-color="#7ce8f2" stop-opacity="0"/></radialGradient>
+<linearGradient id="gs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".6"/><stop offset=".5" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="#b9a6ff" stop-opacity=".6"/></linearGradient>
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ce8f2"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient>
+<clipPath id="tc"><rect class="ty" x="104" y="52" width="343.2" height="44"/></clipPath>
+<clipPath id="clip"><rect width="1200" height="214" rx="18"/></clipPath></defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="214" fill="#04060a"/><rect width="1200" height="214" fill="url(#grid)"/><rect width="1200" height="214" fill="url(#g1)"/>
+<circle class="tw" cx="679" cy="130" r="1.4" fill="#f1f4f8" style="animation-delay:2.61s;animation-duration:6.6s"/>
+<circle class="tw" cx="1058" cy="45" r="1.4" fill="#f1f4f8" style="animation-delay:1.78s;animation-duration:6.8s"/>
+<circle class="tw" cx="752" cy="67" r="1.4" fill="#f1f4f8" style="animation-delay:3.60s;animation-duration:6.0s"/>
+<circle class="tw" cx="1003" cy="139" r="1.4" fill="#b9a6ff" style="animation-delay:2.22s;animation-duration:5.7s"/>
+<circle class="tw" cx="171" cy="21" r="1.4" fill="#7ce8f2" style="animation-delay:3.96s;animation-duration:3.3s"/>
+<circle class="tw" cx="450" cy="134" r="1" fill="#b9a6ff" style="animation-delay:1.28s;animation-duration:4.4s"/>
+<circle class="tw" cx="778" cy="115" r="1.8" fill="#7ce8f2" style="animation-delay:2.75s;animation-duration:6.5s"/>
+<circle class="tw" cx="448" cy="129" r="1" fill="#7ce8f2" style="animation-delay:0.60s;animation-duration:3.5s"/>
+<circle class="tw" cx="395" cy="21" r="1.4" fill="#b9a6ff" style="animation-delay:0.81s;animation-duration:3.8s"/>
+<circle class="tw" cx="772" cy="97" r="1.8" fill="#b9a6ff" style="animation-delay:2.36s;animation-duration:4.8s"/>
+<circle class="tw" cx="1004" cy="102" r="1" fill="#f1f4f8" style="animation-delay:1.52s;animation-duration:6.0s"/>
+<circle class="tw" cx="445" cy="137" r="1" fill="#7ce8f2" style="animation-delay:3.75s;animation-duration:5.5s"/>
+<circle class="tw" cx="850" cy="176" r="1" fill="#f1f4f8" style="animation-delay:2.92s;animation-duration:4.9s"/>
+<circle class="tw" cx="814" cy="178" r="1.4" fill="#f1f4f8" style="animation-delay:1.12s;animation-duration:6.8s"/>
+<circle class="tw" cx="495" cy="100" r="1.8" fill="#f1f4f8" style="animation-delay:0.08s;animation-duration:4.6s"/>
+<circle class="tw" cx="939" cy="72" r="1" fill="#7ce8f2" style="animation-delay:3.66s;animation-duration:4.3s"/>
+<rect class="gp" x="64" y="22" width="1072" height="170" rx="26" fill="none" stroke="#7ce8f2" stroke-opacity=".12" stroke-width="6"/>
+<rect x="64" y="22" width="1072" height="170" rx="26" fill="#0a0e15" fill-opacity=".9" stroke="url(#gs)" stroke-width="1.2"/>
+<g clip-path="url(#tc)"><text x="104" y="86" class="mono" font-size="22" textLength="343.2" lengthAdjust="spacing" xml:space="preserve" fill="#f1f4f8">What are we building next?</text></g>
+<g class="cu"><rect class="blink" x="104" y="62" width="2.5" height="30" rx="1" fill="#7ce8f2"/></g>
+<path d="M96 120H1104" stroke="#fff" stroke-opacity=".08"/>
+<g fill="none" stroke="#9aa4b4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="112" cy="156" r="17"/><path d="M112 148v16M104 156h16"/></g>
+<g fill="none" stroke="#9aa4b4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="158" cy="156" r="17"/><circle cx="158" cy="156" r="8"/><path d="M150 156h16M158 148c-3 4-3 12 0 16M158 148c3 4 3 12 0 16"/></g>
+<g fill="none" stroke="#9aa4b4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="204" cy="156" r="17"/><rect x="200" y="147" width="8" height="13" rx="4"/><path d="M196 156a8 8 0 0 0 16 0M204 164v4"/></g>
+<rect x="252" y="139" width="224" height="34" rx="17" fill="#fff" fill-opacity=".04" stroke="#fff" stroke-opacity=".08"/>
+<g class="mode"><rect x="256" y="143" width="68" height="26" rx="13" fill="#7ce8f2" fill-opacity=".16" stroke="#7ce8f2" stroke-opacity=".5"/></g>
+<text x="290" y="161" text-anchor="middle" class="sans" font-size="14" fill="#f1f4f8">Auto</text>
+<text x="362" y="161" text-anchor="middle" class="sans" font-size="14" fill="#9aa4b4">Fast</text>
+<text x="434" y="161" text-anchor="middle" class="sans" font-size="14" fill="#9aa4b4">Think</text>
+<circle cx="1082" cy="156" r="22" fill="url(#gb)"/><path d="M1082 166V146M1073 154l9-9 9 9" fill="none" stroke="#04060a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1044" y="161" text-anchor="end" class="mono" font-size="12" letter-spacing="2" fill="#808a9a">ENTER TO SHIP</text>
+</g>
+</svg>

@@ -1,54 +1,209 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="t d">
+<title id="t">H S Bharath Surya — profile banner</title>
+<desc id="d">H S Bharath Surya, AI Systems Architect · CS @ Newton School of Technology. Animated ASCII jellyfish drift over a dark ocean grid while a prompt box rotates through what I build.</desc>
 <style>
-.f{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif} .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-@keyframes rise{from{transform:translateY(12px)}to{transform:none}}
-.r{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.pulse{animation:pulse 1.6s ease-in-out infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.spin{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
-.spin-slow{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
-@media (prefers-reduced-motion:reduce){*{animation:none!important} .r{opacity:1}}
-@keyframes L0{0%,6.05%{fill:#1A2236}6.25%,57.20%{fill:#FF2A1F}57.50%,100%{fill:#1A2236}}.l0{fill:#1A2236;animation:L0 8.0s linear infinite}@keyframes L1{0%,14.80%{fill:#1A2236}15.00%,57.20%{fill:#FF2A1F}57.50%,100%{fill:#1A2236}}.l1{fill:#1A2236;animation:L1 8.0s linear infinite}@keyframes L2{0%,23.55%{fill:#1A2236}23.75%,57.20%{fill:#FF2A1F}57.50%,100%{fill:#1A2236}}.l2{fill:#1A2236;animation:L2 8.0s linear infinite}@keyframes L3{0%,32.30%{fill:#1A2236}32.50%,57.20%{fill:#FF2A1F}57.50%,100%{fill:#1A2236}}.l3{fill:#1A2236;animation:L3 8.0s linear infinite}@keyframes L4{0%,41.05%{fill:#1A2236}41.25%,57.20%{fill:#FF2A1F}57.50%,100%{fill:#1A2236}}.l4{fill:#1A2236;animation:L4 8.0s linear infinite}@keyframes go{0%,57.5%{opacity:0}58.5%,92%{opacity:1}96%,100%{opacity:0}}.go{opacity:0;animation:go 8.0s linear infinite}@keyframes drive{0%,57.5%{transform:translateX(0)}86%{transform:translateX(1300px)}86.01%{transform:translateX(-420px)}100%{transform:translateX(0)}}.drive{animation:drive 8.0s cubic-bezier(.55,0,.75,.6) infinite}@keyframes sweep{from{transform:translateX(-400px)}to{transform:translateX(1400px)}}.sweep{animation:sweep 5s linear infinite}</style>
-<defs><clipPath id="clip"><rect width="1200" height="430" rx="16"/></clipPath><pattern id="chk414" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#0A0A0A"/><rect width="8" height="8" fill="#F2F2F2"/><rect x="8" y="8" width="8" height="8" fill="#F2F2F2"/><animateTransform attributeName="patternTransform" type="translate" from="0 0" to="16 0" dur="0.8s" repeatCount="indefinite"/></pattern><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#131D33"/></pattern><radialGradient id="glow" cx="78%" cy="35%" r="45%"><stop offset="0" stop-color="#E10600" stop-opacity=".32"/><stop offset="1" stop-color="#E10600" stop-opacity="0"/></radialGradient><linearGradient id="title" x1="0" x2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset="1" stop-color="#F5B14C"/></linearGradient><linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><pattern id="kerb" width="48" height="8" patternUnits="userSpaceOnUse"><rect width="24" height="8" fill="#E10600"/><rect x="24" width="24" height="8" fill="#F2F2F2"/></pattern></defs>
+.mono{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace} .sans{font-family:Geist,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif} .serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif}
+@keyframes pulse{0%,100%{transform:scale(1,1)}45%{transform:scale(.93,1.06)}}
+@keyframes fa{0%,33.3%{opacity:1}33.4%,100%{opacity:0}}
+@keyframes fb{0%,33.3%{opacity:0}33.4%,66.6%{opacity:1}66.7%,100%{opacity:0}}
+@keyframes fc{0%,66.6%{opacity:0}66.7%,100%{opacity:1}}
+@keyframes driftA{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-24px)}}
+@keyframes driftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,-16px)}}
+@keyframes twinkle{0%,100%{opacity:.08}50%{opacity:.75}}
+.bell{transform-box:fill-box;transform-origin:50% 0;animation:pulse 3.6s ease-in-out infinite}
+.fa{animation:fa 1.8s steps(1) infinite} .fb{animation:fb 1.8s steps(1) infinite} .fc{animation:fc 1.8s steps(1) infinite}
+.dA{animation:driftA 9s ease-in-out infinite} .dB{animation:driftB 11s ease-in-out infinite}
+.tw{animation:twinkle 4s ease-in-out infinite}
+
+@keyframes hl{0%{opacity:0;transform:translateY(10px);filter:blur(8px)}
+  3.20%{opacity:1;transform:none;filter:blur(0)}
+  16.80%{opacity:1;transform:none;filter:blur(0)}
+  20.00%{opacity:0;transform:translateY(-8px);filter:blur(6px)}100%{opacity:0}}
+.hl{opacity:0;animation:hl 15.0s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.blink{animation:blink 1.1s steps(1) infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important} .hl0{opacity:1}}
+</style>
+<defs><pattern id="grid" width="10" height="15" patternUnits="userSpaceOnUse"><path d="M10 0V15M0 15H10" stroke="#fff" stroke-opacity=".035" fill="none"/></pattern>
+<radialGradient id="gC" cx="78%" cy="18%" r="55%"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".20"/><stop offset="1" stop-color="#7ce8f2" stop-opacity="0"/></radialGradient>
+<radialGradient id="gV" cx="12%" cy="105%" r="60%"><stop offset="0" stop-color="#b9a6ff" stop-opacity=".22"/><stop offset="1" stop-color="#b9a6ff" stop-opacity="0"/></radialGradient>
+<linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="170" y1="0" x2="560" y2="0"><stop offset="0" stop-color="#7ce8f2"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient>
+<linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="#b9a6ff" stop-opacity=".55"/></linearGradient>
+<mask id="fadeR"><linearGradient id="fr" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".18" stop-color="#fff"/></linearGradient><rect width="1200" height="440" fill="url(#fr)"/></mask>
+<clipPath id="clip"><rect width="1200" height="440" rx="18"/></clipPath></defs>
 <g clip-path="url(#clip)">
-<rect width="1200" height="430" fill="#0B1220"/>
-<rect width="1200" height="430" fill="url(#grid)"/>
-<rect width="1200" height="430" fill="url(#glow)"/>
-<rect class="sweep" x="0" y="0" width="300" height="430" fill="url(#sheen)"/>
-<circle cx="62" cy="66" r="5" fill="#FF3B30" class="pulse"/>
-<text x="78" y="71" class="m r" font-size="15" letter-spacing="2.5" fill="#8A97B4">LIVE  ·  BENGALURU, IN  ·  NEWTON SCHOOL OF TECHNOLOGY</text>
-<text x="54" y="150" class="f r" style="animation-delay:.1s" font-size="66" font-weight="800" letter-spacing="-1.5" fill="#E8EDF7">H S Bharath Surya</text>
-<text x="56" y="200" class="f r" style="animation-delay:.2s" font-size="34" font-weight="700" fill="url(#title)">AI Systems Architect</text>
-<text x="56" y="240" class="f r" style="animation-delay:.3s" font-size="19" fill="#8A97B4">I design the system and set the strategy. AI runs the laps.</text>
-<g class="r" style="animation-delay:0.40s"><rect x="56" y="266" width="79" height="30" rx="15.0" fill="#5C8DFF" fill-opacity=".13" stroke="#5C8DFF" stroke-opacity=".45"/><text x="95" y="286.0" text-anchor="middle" class="f" font-size="14" font-weight="600" fill="#5C8DFF">Python</text></g>
-<g class="r" style="animation-delay:0.48s"><rect x="144.72" y="266" width="136" height="30" rx="15.0" fill="#FF3B30" fill-opacity=".13" stroke="#FF3B30" stroke-opacity=".45"/><text x="212" y="286.0" text-anchor="middle" class="f" font-size="14" font-weight="600" fill="#FF3B30">LLM Workflows</text></g>
-<g class="r" style="animation-delay:0.56s"><rect x="290.28" y="266" width="184" height="30" rx="15.0" fill="#A78BFA" fill-opacity=".13" stroke="#A78BFA" stroke-opacity=".45"/><text x="382" y="286.0" text-anchor="middle" class="f" font-size="14" font-weight="600" fill="#A78BFA">Multi-agent Systems</text></g>
-<g class="r" style="animation-delay:0.64s"><rect x="484.55999999999995" y="266" width="111" height="30" rx="15.0" fill="#F5B14C" fill-opacity=".13" stroke="#F5B14C" stroke-opacity=".45"/><text x="540" y="286.0" text-anchor="middle" class="f" font-size="14" font-weight="600" fill="#F5B14C">Automation</text></g>
-<g class="r" style="animation-delay:0.72s"><rect x="605.76" y="266" width="176" height="30" rx="15.0" fill="#4FD1C5" fill-opacity=".13" stroke="#4FD1C5" stroke-opacity=".45"/><text x="694" y="286.0" text-anchor="middle" class="f" font-size="14" font-weight="600" fill="#4FD1C5">Prompt Engineering</text></g>
-<rect x="756" y="44" width="392" height="14" rx="4" fill="#05080F" stroke="#1E2A44"/>
-<rect x="772" y="58" width="56" height="112" rx="12" fill="#05080F" stroke="#1E2A44"/>
-<circle cx="800" cy="90" r="17" class="l0" filter="url(#lg)"/>
-<circle cx="800" cy="138" r="17" class="l0" filter="url(#lg)"/>
-<rect x="848" y="58" width="56" height="112" rx="12" fill="#05080F" stroke="#1E2A44"/>
-<circle cx="876" cy="90" r="17" class="l1" filter="url(#lg)"/>
-<circle cx="876" cy="138" r="17" class="l1" filter="url(#lg)"/>
-<rect x="924" y="58" width="56" height="112" rx="12" fill="#05080F" stroke="#1E2A44"/>
-<circle cx="952" cy="90" r="17" class="l2" filter="url(#lg)"/>
-<circle cx="952" cy="138" r="17" class="l2" filter="url(#lg)"/>
-<rect x="1000" y="58" width="56" height="112" rx="12" fill="#05080F" stroke="#1E2A44"/>
-<circle cx="1028" cy="90" r="17" class="l3" filter="url(#lg)"/>
-<circle cx="1028" cy="138" r="17" class="l3" filter="url(#lg)"/>
-<rect x="1076" y="58" width="56" height="112" rx="12" fill="#05080F" stroke="#1E2A44"/>
-<circle cx="1104" cy="90" r="17" class="l4" filter="url(#lg)"/>
-<circle cx="1104" cy="138" r="17" class="l4" filter="url(#lg)"/>
-<text x="950" y="212" text-anchor="middle" class="m go" font-size="16" letter-spacing="3" font-weight="700" fill="#F5B14C">LIGHTS OUT AND AWAY WE GO</text>
-<rect y="322" width="1200" height="92" fill="#0E1626"/>
-<rect y="322" width="1200" height="8" fill="url(#kerb)" opacity=".85"/>
-<line x1="0" y1="370" x2="1200" y2="370" stroke="#2A3550" stroke-width="2" stroke-dasharray="34 22"/>
-<line x1="1200" y1="346" x2="1260" y2="346" stroke="#8A97B4" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"><animate attributeName="x1" values="1200;-200" dur="1.1s" begin="0.00s" repeatCount="indefinite"/><animate attributeName="x2" values="1260;-140" dur="1.1s" begin="0.00s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;.6;0" dur="1.1s" begin="0.00s" repeatCount="indefinite"/></line><line x1="1200" y1="360" x2="1297" y2="360" stroke="#8A97B4" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"><animate attributeName="x1" values="1200;-200" dur="1.1s" begin="0.17s" repeatCount="indefinite"/><animate attributeName="x2" values="1297;-103" dur="1.1s" begin="0.17s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;.6;0" dur="1.1s" begin="0.17s" repeatCount="indefinite"/></line><line x1="1200" y1="382" x2="1334" y2="382" stroke="#8A97B4" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"><animate attributeName="x1" values="1200;-200" dur="1.1s" begin="0.34s" repeatCount="indefinite"/><animate attributeName="x2" values="1334;-66" dur="1.1s" begin="0.34s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;.6;0" dur="1.1s" begin="0.34s" repeatCount="indefinite"/></line><line x1="1200" y1="396" x2="1281" y2="396" stroke="#8A97B4" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"><animate attributeName="x1" values="1200;-200" dur="1.1s" begin="0.51s" repeatCount="indefinite"/><animate attributeName="x2" values="1281;-119" dur="1.1s" begin="0.51s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;.6;0" dur="1.1s" begin="0.51s" repeatCount="indefinite"/></line>
-<g class="drive"><g class="" transform="translate(70 334) scale(0.6)"><ellipse cx="185" cy="104" rx="175" ry="5" fill="#000" opacity=".45"/><rect x="6" y="16" width="9" height="56" rx="2" fill="#0A0A0A"/><rect x="2" y="16" width="50" height="10" rx="2" fill="#E10600"/><rect x="10" y="42" width="32" height="5" fill="#0A0A0A"/><rect x="30" y="86" width="300" height="6" rx="2" fill="#0A0A0A"/><path d="M40 86 L44 60 L95 54 L128 32 L150 28 L168 32 L176 50 L214 52 L250 60 L300 70 L338 78 L348 86 Z" fill="#E10600"/><path d="M100 86 L104 64 L170 60 L230 64 L252 86 Z" fill="#A80400"/><path d="M150 57 L302 74 L302 79 L150 63 Z" fill="#F2F2F2" opacity=".92"/><path d="M128 32 L150 28 L168 32 L160 40 L134 40 Z" fill="#0A0A0A"/><text x="118" y="80" class="m" font-size="13" font-weight="700" fill="#F2F2F2">01</text><circle cx="196" cy="45" r="9" fill="#F5B14C"/><rect x="196" y="41" width="10" height="5" rx="2" fill="#0A0A0A"/><path d="M180 51 Q196 32 216 51" stroke="#0A0A0A" stroke-width="4" stroke-linecap="round"/><rect x="318" y="88" width="42" height="6" rx="2" fill="#0A0A0A"/><rect x="354" y="78" width="6" height="16" rx="1" fill="#E10600"/><circle cx="78" cy="82" r="22" fill="#07090D"/><circle cx="78" cy="82" r="16" stroke="#FF3B30" stroke-width="2.5"/><circle cx="78" cy="82" r="8" fill="#2A3550"/><g class="spin"><path d="M67 82H89M78 71V93" stroke="#7F8BA6" stroke-width="2.4"/></g><circle cx="282" cy="85" r="19" fill="#07090D"/><circle cx="282" cy="85" r="13" stroke="#FF3B30" stroke-width="2.5"/><circle cx="282" cy="85" r="8" fill="#2A3550"/><g class="spin"><path d="M271 85H293M282 74V96" stroke="#7F8BA6" stroke-width="2.4"/></g></g></g>
-<rect y="414" width="1200" height="16" fill="url(#chk414)"/>
+<rect width="1200" height="440" fill="#04060a"/><rect width="1200" height="440" fill="url(#grid)"/>
+<rect width="1200" height="440" fill="url(#gC)"/><rect width="1200" height="440" fill="url(#gV)"/>
+<circle class="tw" cx="409" cy="80" r="1" fill="#7ce8f2" style="animation-delay:3.29s;animation-duration:3.4s"/>
+<circle class="tw" cx="704" cy="384" r="1" fill="#7ce8f2" style="animation-delay:0.34s;animation-duration:4.7s"/>
+<circle class="tw" cx="314" cy="240" r="1" fill="#7ce8f2" style="animation-delay:3.79s;animation-duration:5.5s"/>
+<circle class="tw" cx="705" cy="45" r="1.8" fill="#7ce8f2" style="animation-delay:3.91s;animation-duration:3.2s"/>
+<circle class="tw" cx="1019" cy="136" r="1" fill="#7ce8f2" style="animation-delay:2.28s;animation-duration:5.2s"/>
+<circle class="tw" cx="817" cy="61" r="1" fill="#b9a6ff" style="animation-delay:0.39s;animation-duration:5.8s"/>
+<circle class="tw" cx="683" cy="268" r="1.8" fill="#f1f4f8" style="animation-delay:3.11s;animation-duration:4.9s"/>
+<circle class="tw" cx="1093" cy="165" r="1" fill="#7ce8f2" style="animation-delay:2.80s;animation-duration:4.0s"/>
+<circle class="tw" cx="695" cy="230" r="1.4" fill="#f1f4f8" style="animation-delay:1.15s;animation-duration:6.9s"/>
+<circle class="tw" cx="175" cy="187" r="1.4" fill="#7ce8f2" style="animation-delay:3.73s;animation-duration:4.7s"/>
+<circle class="tw" cx="1137" cy="51" r="1.4" fill="#b9a6ff" style="animation-delay:2.78s;animation-duration:5.4s"/>
+<circle class="tw" cx="701" cy="202" r="1" fill="#b9a6ff" style="animation-delay:1.90s;animation-duration:5.7s"/>
+<circle class="tw" cx="109" cy="301" r="1.8" fill="#b9a6ff" style="animation-delay:2.87s;animation-duration:6.5s"/>
+<circle class="tw" cx="436" cy="396" r="1.4" fill="#7ce8f2" style="animation-delay:2.44s;animation-duration:5.0s"/>
+<circle class="tw" cx="289" cy="135" r="1" fill="#f1f4f8" style="animation-delay:1.56s;animation-duration:6.5s"/>
+<circle class="tw" cx="132" cy="200" r="1.4" fill="#7ce8f2" style="animation-delay:3.28s;animation-duration:6.5s"/>
+<circle class="tw" cx="357" cy="186" r="1.4" fill="#f1f4f8" style="animation-delay:3.83s;animation-duration:3.6s"/>
+<circle class="tw" cx="241" cy="113" r="1" fill="#7ce8f2" style="animation-delay:1.94s;animation-duration:5.4s"/>
+<circle class="tw" cx="340" cy="22" r="1.8" fill="#b9a6ff" style="animation-delay:2.44s;animation-duration:4.3s"/>
+<circle class="tw" cx="183" cy="364" r="1" fill="#f1f4f8" style="animation-delay:3.60s;animation-duration:6.1s"/>
+<circle class="tw" cx="1037" cy="339" r="1.8" fill="#f1f4f8" style="animation-delay:1.60s;animation-duration:3.4s"/>
+<circle class="tw" cx="763" cy="45" r="1" fill="#7ce8f2" style="animation-delay:1.76s;animation-duration:3.4s"/>
+<circle class="tw" cx="725" cy="61" r="1" fill="#7ce8f2" style="animation-delay:3.80s;animation-duration:5.5s"/>
+<circle class="tw" cx="120" cy="103" r="1.8" fill="#7ce8f2" style="animation-delay:2.54s;animation-duration:6.8s"/>
+<circle class="tw" cx="727" cy="210" r="1" fill="#f1f4f8" style="animation-delay:3.97s;animation-duration:4.9s"/>
+<circle class="tw" cx="592" cy="54" r="1" fill="#b9a6ff" style="animation-delay:2.96s;animation-duration:4.9s"/>
+<circle class="tw" cx="829" cy="227" r="1" fill="#b9a6ff" style="animation-delay:0.59s;animation-duration:5.2s"/>
+<circle class="tw" cx="71" cy="231" r="1" fill="#b9a6ff" style="animation-delay:2.07s;animation-duration:6.6s"/>
+<circle class="tw" cx="445" cy="109" r="1.4" fill="#7ce8f2" style="animation-delay:2.45s;animation-duration:6.2s"/>
+<circle class="tw" cx="904" cy="98" r="1" fill="#f1f4f8" style="animation-delay:2.96s;animation-duration:3.9s"/>
+<circle class="tw" cx="630" cy="162" r="1" fill="#7ce8f2" style="animation-delay:3.16s;animation-duration:4.9s"/>
+<circle class="tw" cx="261" cy="262" r="1.4" fill="#f1f4f8" style="animation-delay:3.23s;animation-duration:5.9s"/>
+<circle class="tw" cx="438" cy="410" r="1" fill="#7ce8f2" style="animation-delay:0.41s;animation-duration:4.9s"/>
+<circle class="tw" cx="425" cy="213" r="1" fill="#f1f4f8" style="animation-delay:3.64s;animation-duration:4.4s"/>
+<g mask="url(#fadeR)">
+<g transform="translate(770 58) scale(1.7)" opacity="0.95">
+<g class="dA" style="animation-delay:0s;animation-duration:10s;filter:drop-shadow(0 0 7px #7ce8f266)">
+<g class="mono bell" font-size="14">
+<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.95">    .-"""""-.    </text>
+<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.9">  .'  . : .  '.  </text>
+<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.85"> /  . : : : .  \ </text>
+<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.8">|  : : : : : :  |</text>
+<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.75">|.'  : : : :  '.|</text>
+<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
 </g>
-<rect x=".5" y=".5" width="1199" height="429" rx="16" stroke="#243251"/>
+<g class="mono fa" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   |  ( ( )  )   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   (  ( ) )  |   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   (  | ) )  (   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ) ) |  (   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fb" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   (  | ) |  (   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   |  ) ) (  (   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   )  ) | (  |   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   )  | ( (  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fc" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   )  ) ( (  |   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   )  | ( (  )   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   |  ( ( )  )   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ( | )  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+</g></g>
+<g transform="translate(1048 196) scale(1.0)" opacity="0.9">
+<g class="dB" style="animation-delay:-3s;animation-duration:12s;filter:drop-shadow(0 0 7px #b9a6ff66)">
+<g class="mono bell" font-size="14">
+<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.95">    .-"""""-.    </text>
+<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.9">  .'  . : .  '.  </text>
+<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.85"> /  . : : : .  \ </text>
+<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.8">|  : : : : : :  |</text>
+<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.75">|.'  : : : :  '.|</text>
+<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
+</g>
+<g class="mono fa" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   |  ( ( )  )   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   (  ( ) )  |   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   (  | ) )  (   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ) ) |  (   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fb" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   (  | ) |  (   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   |  ) ) (  (   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   )  ) | (  |   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   )  | ( (  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fc" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   )  ) ( (  |   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   )  | ( (  )   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   |  ( ( )  )   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ( | )  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+</g></g>
+<g transform="translate(1086 50) scale(0.7)" opacity="0.7">
+<g class="dB" style="animation-delay:-5s;animation-duration:8s;filter:drop-shadow(0 0 7px #7ce8f266)">
+<g class="mono bell" font-size="14">
+<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.95">    .-"""""-.    </text>
+<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.9">  .'  . : .  '.  </text>
+<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.85"> /  . : : : .  \ </text>
+<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.8">|  : : : : : :  |</text>
+<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.75">|.'  : : : :  '.|</text>
+<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
+</g>
+<g class="mono fa" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   |  ( ( )  )   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   (  ( ) )  |   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   (  | ) )  (   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ) ) |  (   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fb" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   (  | ) |  (   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   |  ) ) (  (   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   )  ) | (  |   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   )  | ( (  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fc" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   )  ) ( (  |   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   )  | ( (  )   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   |  ( ( )  )   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ( | )  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+</g></g>
+<g transform="translate(716 318) scale(0.62)" opacity="0.65">
+<g class="dA" style="animation-delay:-2s;animation-duration:13s;filter:drop-shadow(0 0 7px #b9a6ff66)">
+<g class="mono bell" font-size="14">
+<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.95">    .-"""""-.    </text>
+<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.9">  .'  . : .  '.  </text>
+<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.85"> /  . : : : .  \ </text>
+<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.8">|  : : : : : :  |</text>
+<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.75">|.'  : : : :  '.|</text>
+<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
+</g>
+<g class="mono fa" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   |  ( ( )  )   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   (  ( ) )  |   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   (  | ) )  (   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ) ) |  (   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fb" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   (  | ) |  (   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   |  ) ) (  (   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   )  ) | (  |   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   )  | ( (  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+<g class="mono fc" font-size="14">
+<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   )  ) ( (  |   </text>
+<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   )  | ( (  )   </text>
+<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   |  ( ( )  )   </text>
+<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ( | )  )   </text>
+<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
+</g>
+</g></g>
+</g>
+<g class="rise" style="animation-delay:.05s"><rect x="64" y="86" width="8" height="8" rx="2" fill="#d4af37"/><text x="84" y="95" class="mono" font-size="13" letter-spacing="3" fill="#9aa4b4" xml:space="preserve">BENGALURU  ·  OPEN TO WORK</text></g>
+<g class="rise" style="animation-delay:.2s"><text x="64" y="172" class="serif" font-size="70" font-weight="500" fill="#f1f4f8" letter-spacing="-1">H S <tspan fill="url(#gName)" font-style="italic">Bharath Surya</tspan></text></g>
+<g class="rise" style="animation-delay:.35s"><text x="66" y="214" class="sans" font-size="19" fill="#9aa4b4" xml:space="preserve">AI Systems Architect  ·  CS @ Newton School of Technology</text></g>
+<g class="rise" style="animation-delay:.5s"><rect x="64" y="250" width="640" height="78" rx="22" fill="#0a0e15" fill-opacity=".82" stroke="url(#gStroke)" stroke-width="1.2"/><text x="94" y="298" class="mono" font-size="22" fill="#7ce8f2">›</text><text class="hl sans hl0" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:0.0s">Ship <tspan fill="#7ce8f2">multi-agent</tspan> systems that stay accountable</text><text class="hl sans hl1" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:3.0s">Route <tspan fill="#7ce8f2">LLMs</tspan> across Gemini, Groq &amp; Ollama</text><text class="hl sans hl2" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:6.0s">Automate the <tspan fill="#7ce8f2">boring</tspan> parts with n8n &amp; Zapier</text><text class="hl sans hl3" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:9.0s">Keep a <tspan fill="#7ce8f2">human</tspan> in the loop, always</text><text class="hl sans hl4" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:12.0s">Run <tspan fill="#7ce8f2">local</tspan>. Stay sovereign.</text></g>
+<text x="68" y="362" class="mono" font-size="12" letter-spacing="1.5" fill="#808a9a">python  ·  fastapi  ·  llm routing  ·  agents  ·  automation</text>
+</g>
 </svg>
