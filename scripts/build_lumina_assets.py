@@ -54,6 +54,12 @@ CHIPS = [  # (file, label)
 ]
 CAPTION = "DRIFT GENTLY       SHIP CAREFULLY"   # the gold square sits in the gap
 
+BURST = dict(
+    eyebrow="WHAT I BUILD",
+    boxes=["ENGINEERING", "SOVEREIGN", "AI SYSTEMS"],
+    nav_left="H S BHARATH SURYA",
+    nav_right="PROJECTS     STACK     CONTACT",
+)
 INTRO = dict(
     eyebrow="INTRO  ·  BENGALURU, IN",
     line1="Hi, I'm Bharath.",
@@ -599,7 +605,7 @@ CLICK_T = 12.5
 BTN = (560, 520, 190, 48)               # x, y, w, h of the "Say hello" pill
 
 
-def portrait_dots(photo):
+def portrait_density(photo):
     import numpy as np
     from PIL import Image, ImageFilter, ImageOps, ImageDraw
     g = Image.open(photo).convert("L").crop(PORTRAIT_CROP).resize((PW, PH), Image.LANCZOS)
@@ -623,11 +629,15 @@ def portrait_dots(photo):
          + 0.28 * edge + 0.45 * rim + 0.12 * (1 - a) ** 2 * local) * m
     yy, xx = np.mgrid[0:PH, 0:PW]
     fade = (np.clip((PH - yy) / 120, 0, 1) ** 0.8) * np.clip(xx / 45, 0, 1) * np.clip((PW - xx) / 45, 0, 1)
-    d = np.clip(d * np.where(m > 0.5, np.maximum(fade, 0.0), 1), 0, 1)
+    return np.clip(d * np.where(m > 0.5, np.maximum(fade, 0.0), 1), 0, 1)
+
+
+def portrait_dots(photo):
+    d = portrait_density(photo)
     rnd = random.Random(5)
     step, dots = 2.2, []
-    for y0 in np.arange(0, PH, step):
-        for x0 in np.arange(0, PW, step):
+    for y0 in [k * step for k in range(int(PH / step) + 1)]:
+        for x0 in [k * step for k in range(int(PW / step) + 1)]:
             x, y = x0 + rnd.uniform(0, step), y0 + rnd.uniform(0, step)
             if x >= PW or y >= PH:
                 continue
@@ -797,6 +807,124 @@ def build_intro(photo):
     return s
 
 
+# --------------------------------------------------------------------------
+# burst.svg - halftone portrait that bursts into particles and reforms
+#   (inspired by the "bursting particles" scroll effect: a dot-matrix image
+#    explodes into dust, then the dust pulls back together; boxed caps headline)
+# --------------------------------------------------------------------------
+B_W, B_H = 1200, 520
+B_CYCLE = 11.0
+B_SC, B_OX, B_OY = 0.95, 706, 22        # portrait scale and origin on the canvas
+B_PITCH = 6.3                           # grid pitch in portrait px  (about 6 px on the canvas)
+B_CENTER = (890, 240)                   # where the burst starts (around the face)
+B_SECTORS, B_SPEEDS = 36, 8
+B_BOX_L = 31                            # px per letter in the headline boxes
+
+
+def build_burst(photo):
+    import numpy as np
+    d = portrait_density(photo)
+    rnd = random.Random(42)
+    # regular dot-matrix sampling of the density map (offset every other row, like a halftone screen)
+    classes = {}
+    ncols, nrows = int(PW / B_PITCH), int(PH / B_PITCH)
+    total = 0
+    for j in range(nrows):
+        for i in range(ncols):
+            px = (i + (0.5 if j % 2 else 0)) * B_PITCH
+            py = j * B_PITCH
+            if px >= PW or py >= PH:
+                continue
+            v = float(d[int(py), int(px)])
+            if v < 0.13:
+                continue
+            cx, cy = B_OX + px * B_SC, B_OY + py * B_SC
+            wi = 0 if v < 0.38 else 1 if v < 0.68 else 2
+            ang = math.atan2(cy - B_CENTER[1], cx - B_CENTER[0])
+            sec = int(((ang + math.pi) / (2 * math.pi)) * B_SECTORS) % B_SECTORS
+            spd = rnd.randrange(B_SPEEDS)
+            classes.setdefault((sec, spd), [[], [], []])[wi].append((round(cx), round(cy)))
+            total += 1
+    SW = (1.7, 2.7, 3.7)
+    groups = []
+    for (sec, spd), buckets in sorted(classes.items()):
+        a = (sec + 0.5) / B_SECTORS * 2 * math.pi - math.pi + rnd.uniform(-0.06, 0.06)
+        mag = 40 + spd * 52 + rnd.uniform(-15, 45)
+        vx, vy = math.cos(a) * mag + 40, math.sin(a) * mag - 50       # a little wind, a little lift
+        wa = rnd.uniform(0, 2 * math.pi)
+        wx, wy = math.cos(wa) * 60, math.sin(wa) * 60
+        body = "".join(f'<path stroke-width="{sw}" d="' + "".join(f"M{x} {y}h0" for x, y in pts) + '"/>'
+                       for sw, pts in zip(SW, buckets) if pts)
+        groups.append(f'<g class="bp" style="--vx:{vx:.0f}px;--vy:{vy:.0f}px;--wx:{wx:.0f}px;--wy:{wy:.0f}px;'
+                      f'animation-delay:{rnd.uniform(0, 0.45):.2f}s">{body}</g>')
+
+    def dust(n, seed):
+        r = random.Random(seed)
+        return "".join(f"M{r.randrange(8, B_W - 8)} {r.randrange(8, B_H - 8)}h0" for _ in range(n))
+
+    css = BASE_CSS + f"""
+@keyframes burst{{
+ 0%,24%{{transform:translate(0,0);opacity:1;animation-timing-function:cubic-bezier(.12,.75,.2,1)}}
+ 36%{{transform:translate(var(--vx),var(--vy));opacity:.9;animation-timing-function:ease-out}}
+ 56%{{transform:translate(calc(var(--vx)*1.35 + var(--wx)),calc(var(--vy)*1.35 + var(--wy)));opacity:.65;animation-timing-function:cubic-bezier(.55,0,.25,1)}}
+ 84%,100%{{transform:translate(0,0);opacity:1}}}}
+.bp{{animation:burst {B_CYCLE}s infinite}}
+@keyframes dust{{0%,22%{{opacity:.3}}34%,58%{{opacity:.95}}80%,100%{{opacity:.3}}}}
+.dust{{animation:dust {B_CYCLE}s ease-in-out infinite}}
+@keyframes tw2{{0%,100%{{filter:none}}50%{{filter:brightness(1.8)}}}}
+@keyframes wipe{{0%{{transform:scaleX(0)}}7%,86%{{transform:scaleX(1)}}93%,100%{{transform:scaleX(0)}}}}
+.wp{{transform-box:view-box;transform-origin:64px 0;animation:wipe {B_CYCLE}s cubic-bezier(.7,0,.2,1) infinite}}
+@keyframes ring{{0%,23%{{transform:scale(.05);opacity:0}}24%{{opacity:.55}}46%,100%{{transform:scale(1);opacity:0}}}}
+.ring{{transform-box:fill-box;transform-origin:center;opacity:0;animation:ring {B_CYCLE}s cubic-bezier(.2,.7,.2,1) infinite}}
+@keyframes flash{{0%,22%{{opacity:0}}26%{{opacity:.9}}44%,100%{{opacity:0}}}}
+.flash{{opacity:0;animation:flash {B_CYCLE}s ease-out infinite}}
+@keyframes blink{{0%,49%{{opacity:1}}50%,100%{{opacity:0}}}} .blink{{animation:blink 1s steps(1) infinite}}
+@keyframes scrolln{{0%,100%{{transform:scaleY(.25)}}50%{{transform:scaleY(1)}}}}
+.sl{{transform-box:fill-box;transform-origin:50% 0;animation:scrolln 2.4s ease-in-out infinite}}
+@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}}}
+"""
+    s = svg_open(B_W, B_H, f"{NAME} — bursting particles",
+                 f"A dot-matrix portrait that bursts into a cloud of white particles and pulls back together, "
+                 f"beside the headline {', '.join(BURST['boxes']).lower()}.")
+    s += f"<style>{css}</style>\n<defs>{GRID_DEF}\n"
+    s += (f'<radialGradient id="bg1" cx="76%" cy="46%" r="55%"><stop offset="0" stop-color="#2a2d34"/><stop offset="1" stop-color="#0b0d11"/></radialGradient>\n'
+          f'<radialGradient id="fl"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>\n'
+          f'<linearGradient id="vig" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#05070a" stop-opacity=".55"/><stop offset=".5" stop-color="#05070a" stop-opacity="0"/></linearGradient>\n')
+    for k, box in enumerate(BURST["boxes"]):
+        y = 176 + k * 68
+        s += (f'<clipPath id="c{k}"><rect class="wp" x="64" y="{y}" width="{len(box) * B_BOX_L + 40}" height="56" '
+              f'style="animation-delay:{0.35 + k * 0.28:.2f}s"/></clipPath>\n')
+    s += f'<clipPath id="clip"><rect width="{B_W}" height="{B_H}" rx="18"/></clipPath></defs>\n'
+    s += '<g clip-path="url(#clip)">\n'
+    s += f'<rect width="{B_W}" height="{B_H}" fill="url(#bg1)"/><rect width="{B_W}" height="{B_H}" fill="url(#grid)"/>\n'
+    # dust field (always there, brightens during the burst)
+    for k, (n, sw, dl) in enumerate(((260, 1.6, 0), (240, 2.4, -2.2), (160, 3.2, -4.6))):
+        s += (f'<path class="dust" stroke="#fff" stroke-opacity=".7" stroke-linecap="round" stroke-width="{sw}" '
+              f'style="animation-delay:{dl}s" d="{dust(n, 90 + k)}"/>\n')
+    # the halftone portrait
+    s += f'<g fill="none" stroke="#eef1f5" stroke-linecap="round">\n' + "\n".join(groups) + "\n</g>\n"
+    cx, cy = B_CENTER
+    s += f'<circle class="flash" cx="{cx}" cy="{cy}" r="170" fill="url(#fl)"/>\n'
+    s += f'<circle class="ring" cx="{cx}" cy="{cy}" r="420" fill="none" stroke="#fff" stroke-width="1.5"/>\n'
+    s += f'<rect width="{B_W}" height="{B_H}" fill="url(#vig)"/>\n'
+
+    # chrome + boxed headline
+    s += (f'<text x="64" y="58" class="mono" font-size="12" letter-spacing="3" fill="#fff" fill-opacity=".85" xml:space="preserve">{esc(BURST["nav_left"])}</text>\n'
+          f'<text x="{B_W - 64}" y="58" text-anchor="end" class="mono" font-size="11" letter-spacing="3" fill="#fff" fill-opacity=".6" xml:space="preserve">{esc(BURST["nav_right"])}</text>\n')
+    s += f'<text x="64" y="150" class="mono" font-size="11" letter-spacing="3" fill="#fff" fill-opacity=".7">{esc(BURST["eyebrow"])}</text>\n'
+    for k, box in enumerate(BURST["boxes"]):
+        y = 176 + k * 68
+        w = len(box) * B_BOX_L
+        s += (f'<g clip-path="url(#c{k})"><rect x="64" y="{y}" width="{w + 40}" height="56" fill="#fff"/>'
+              f'<text x="84" y="{y + 40}" class="sans" font-size="38" font-weight="700" fill="#0b0d11" textLength="{w}" '
+              f'lengthAdjust="spacing" xml:space="preserve">{esc(box)}</text></g>\n')
+    s += f'<rect class="blink" x="64" y="{176 + len(BURST["boxes"]) * 68 + 8}" width="3" height="44" fill="{GOLD}"/>\n'
+    s += (f'<text transform="translate({B_W - 40} {B_H - 100}) rotate(-90)" class="mono" font-size="11" letter-spacing="3" fill="#fff" fill-opacity=".8">SCROLL</text>\n'
+          f'<rect class="sl" x="{B_W - 45}" y="{B_H - 86}" width="2" height="54" fill="{GOLD}"/>\n')
+    s += "</g>\n</svg>\n"
+    return s
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     files = {"hero.svg": build_hero(), "lumina.svg": build_lumina(),
@@ -805,7 +933,9 @@ def main():
         files[f"{name}.svg"] = build_chip(label)
     import sys
     if "--photo" in sys.argv:
-        files["intro.svg"] = build_intro(sys.argv[sys.argv.index("--photo") + 1])
+        photo = sys.argv[sys.argv.index("--photo") + 1]
+        files["intro.svg"] = build_intro(photo)
+        files["burst.svg"] = build_burst(photo)
     for name, content in files.items():
         (OUT / name).write_text(content, encoding="utf-8")
         print(f"wrote assets/{name}  ({len(content) / 1024:.1f} KB)")
