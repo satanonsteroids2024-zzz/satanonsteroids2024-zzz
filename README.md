@@ -1,3 +1,5 @@
+<img src="assets/intro.svg" width="100%" alt="Intro: Hi, I'm Bharath. I design AI systems. CS student at Newton School of Technology in Bengaluru, building AI systems that route work across models, call tools and keep a human approving the decisions that matter. Portrait drawn as animated particles with a live cursor."/>
+
 <img src="assets/hero.svg" width="100%" alt="H S Bharath Surya, AI Systems Architect. Ship multi-agent systems that stay accountable."/>
 
 <img src="assets/lumina.svg" width="100%" alt="Six slides on a loop: Hello, ARES-X Titan (a sovereign AI intelligence OS with human approval gates), Voice AI in 3D, Quiet Automation (n8n, Zapier, webhooks, REST), a NIFTY futures research tool, and Let's work together."/>

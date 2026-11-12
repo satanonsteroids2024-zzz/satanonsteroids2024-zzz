@@ -54,6 +54,21 @@ CHIPS = [  # (file, label)
 ]
 CAPTION = "DRIFT GENTLY       SHIP CAREFULLY"   # the gold square sits in the gap
 
+INTRO = dict(
+    eyebrow="INTRO  ·  BENGALURU, IN",
+    line1="Hi, I'm Bharath.",
+    line2="I design AI systems.",
+    para=[
+        "CS student at Newton School of Technology in Bengaluru.",
+        "I design AI systems that route work across models,",
+        "call tools, and keep a human approving the decisions",
+        "that matter: Python, FastAPI, LLM workflows and n8n.",
+    ],
+    pills=["90+ modules", "114/114 tests", "Open to freelance"],
+    button="Say hello",
+    cursor_label="Bharath",
+)
+
 # --------------------------------------------------------------------------
 # design tokens
 # --------------------------------------------------------------------------
@@ -560,12 +575,237 @@ def build_footer():
     return s
 
 
+# --------------------------------------------------------------------------
+# intro.svg - particle portrait + live cursor
+#   Needs numpy + Pillow and the photo:  python3 scripts/build_lumina_assets.py --photo /path/to/photo
+#   The photo itself is never copied into the repo, only the dot positions.
+# --------------------------------------------------------------------------
+PW, PH = 370, 504                       # portrait working size (px)
+PORTRAIT_CROP = (125, 415, 775, 1300)   # crop of the source photo that holds the picture
+# hand-traced outline of the subject in the cropped/resized frame (keeps the background empty)
+PORTRAIT_POLY = [(84,160),(84,125),(95,95),(112,68),(135,46),(165,28),(200,20),(240,22),(275,36),(305,58),(328,85),
+                 (340,115),(338,150),(330,185),(322,222),(302,232),(298,250),(291,280),(293,310),(300,318),(310,322),
+                 (340,335),(370,362),(370,504),(0,504),(0,315),(60,305),(112,298),(135,308),(128,290),(122,275),
+                 (110,262),(107,247),(98,238),(82,228),(79,205),(82,185),(88,172)]
+I_W, I_H = 1200, 640
+I_CYCLE = 14.8
+I_SCALE = 0.6                           # units (half pixels) -> canvas px  (1.2 * 0.5)
+I_OX, I_OY = 70, 16                     # portrait origin on the canvas
+CELL = 40                               # cell size in units
+CURSOR_WAY = [(0, 600, 590), (1.6, 330, 560), (3.0, 150, 470), (4.4, 200, 300), (5.8, 320, 250), (7.2, 330, 90),
+              (8.4, 450, 200), (9.6, 470, 400), (11.0, 560, 520), (12.0, 640, 548), (12.7, 640, 548),
+              (13.8, 700, 610), (14.8, 600, 590)]
+CLICK_T = 12.5
+BTN = (560, 520, 190, 48)               # x, y, w, h of the "Say hello" pill
+
+
+def portrait_dots(photo):
+    import numpy as np
+    from PIL import Image, ImageFilter, ImageOps, ImageDraw
+    g = Image.open(photo).convert("L").crop(PORTRAIT_CROP).resize((PW, PH), Image.LANCZOS)
+    g = ImageOps.autocontrast(g, cutoff=1)
+    mask = Image.new("L", (PW, PH), 0)
+    ImageDraw.Draw(mask).polygon(PORTRAIT_POLY, fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(1.6))
+    m = np.asarray(mask, float) / 255
+    f = lambda im: np.asarray(im, float) / 255
+    a = f(g)
+    blur = f(g.filter(ImageFilter.GaussianBlur(10)))
+    blur2 = f(g.filter(ImageFilter.GaussianBlur(4)))
+    blur6 = f(g.filter(ImageFilter.GaussianBlur(6)))
+    local = np.clip(0.5 + (a - blur) * 2.6, 0, 1)
+    edge = np.clip((np.abs(np.gradient(a, axis=1)) + np.abs(np.gradient(a, axis=0))) * 10, 0, 1)
+    rim = np.clip(m - f(mask.filter(ImageFilter.GaussianBlur(7))), 0, 1) * 2.2
+    detail = a - blur2
+    sharp = np.clip(a + 1.5 * (a - blur6), 0, 1)
+    tone = np.where(sharp < 0.55, sharp, 0.55 + 0.35 * (sharp - 0.55))
+    d = (0.10 + 0.78 * tone + 1.2 * np.clip(detail, 0, 1) - 1.4 * np.clip(-detail, 0, 1)
+         + 0.28 * edge + 0.45 * rim + 0.12 * (1 - a) ** 2 * local) * m
+    yy, xx = np.mgrid[0:PH, 0:PW]
+    fade = (np.clip((PH - yy) / 120, 0, 1) ** 0.8) * np.clip(xx / 45, 0, 1) * np.clip((PW - xx) / 45, 0, 1)
+    d = np.clip(d * np.where(m > 0.5, np.maximum(fade, 0.0), 1), 0, 1)
+    rnd = random.Random(5)
+    step, dots = 2.2, []
+    for y0 in np.arange(0, PH, step):
+        for x0 in np.arange(0, PW, step):
+            x, y = x0 + rnd.uniform(0, step), y0 + rnd.uniform(0, step)
+            if x >= PW or y >= PH:
+                continue
+            v = float(d[int(y), int(x)])
+            if rnd.random() < v ** 1.15 * 0.8:
+                dots.append((x, y, v))
+    return dots
+
+
+def _cursor_at(t):
+    t = t % I_CYCLE
+    for (t0, x0, y0), (t1, x1, y1) in zip(CURSOR_WAY, CURSOR_WAY[1:]):
+        if t0 <= t <= t1:
+            u = 0 if t1 == t0 else (t - t0) / (t1 - t0)
+            e = 0.5 - 0.5 * math.cos(math.pi * u)
+            return x0 + (x1 - x0) * e, y0 + (y1 - y0) * e
+    return CURSOR_WAY[-1][1:]
+
+
+def _tint(ux):
+    t = ux / (PW * 2)
+    if t < 0.5:
+        return "#f1f4f8"
+    if t < 0.68:
+        return "#fff1c9"
+    if t < 0.84:
+        return "#ffd978"
+    return "#ffb057"
+
+
+def build_intro(photo):
+    dots = portrait_dots(photo)
+    # bucket dots into cells (coordinates in half-pixel units so they stay integers)
+    cells = {}
+    for x, y, v in dots:
+        ux, uy = round(x * 2), round(y * 2)
+        cls = 0 if v < 0.38 else 1 if v < 0.7 else 2
+        cells.setdefault((ux // CELL, uy // CELL), [[], [], []])[cls].append((ux, uy))
+    SW = (3.0, 4.2, 5.6)
+    samples = [(k * 0.1, *_cursor_at(k * 0.1)) for k in range(int(I_CYCLE * 10) + 1)]
+    R, MAXPUSH = 105.0, 50.0
+
+    css = BASE_CSS + f"""
+@keyframes push{{0%{{transform:translate(0,0)}}2%{{transform:translate(var(--dx),var(--dy))}}
+  6%{{transform:translate(calc(var(--dx)*-.16),calc(var(--dy)*-.16))}}11%,100%{{transform:translate(0,0)}}}}
+.pc{{animation:push {I_CYCLE}s cubic-bezier(.2,.7,.2,1) infinite both}}
+@keyframes flow{{0%{{opacity:0;transform:translate(0,0)}}12%{{opacity:.9}}70%{{opacity:.55}}100%{{opacity:0;transform:translate(var(--fx),var(--fy))}}}}
+.fl{{opacity:0;animation:flow 9s ease-in-out infinite}}
+@keyframes rise{{from{{opacity:0;transform:translateY(14px)}}to{{opacity:1;transform:none}}}}
+.rise{{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}}
+@keyframes rip{{0%{{transform:scale(.15);opacity:.9}}5%{{transform:scale(1);opacity:0}}100%{{transform:scale(1);opacity:0}}}}
+.rip{{opacity:0;transform-box:fill-box;transform-origin:center;animation:rip {I_CYCLE}s cubic-bezier(.2,.7,.2,1) infinite;animation-fill-mode:forwards}}
+@keyframes flash{{0%{{opacity:.0}}1.2%{{opacity:.55}}7%{{opacity:0}}100%{{opacity:0}}}}
+.flash{{opacity:0;animation:flash {I_CYCLE}s ease-out infinite;animation-fill-mode:forwards}}
+@keyframes dip{{0%{{transform:scale(1)}}.5%{{transform:scale(.8)}}2.4%{{transform:scale(1)}}100%{{transform:scale(1)}}}}
+.dip{{animation:dip {I_CYCLE}s ease-out infinite}}
+"""
+    # cursor keyframes (same clock as the particle pushes)
+    kf = "".join(f"{t / I_CYCLE * 100:.3f}%{{transform:translate({x:.1f}px,{y:.1f}px)}}" for t, x, y in samples)
+    css += f"@keyframes cur{{{kf}}}\n.cur{{animation:cur {I_CYCLE}s linear infinite}}\n"
+    css += "@media (prefers-reduced-motion:reduce){*{animation:none!important}}\n"
+
+    # per-cell cursor interaction
+    groups = []
+    for (cx, cy), buckets in sorted(cells.items()):
+        ux0, uy0 = (cx + 0.5) * CELL, (cy + 0.5) * CELL
+        px, py = I_OX + ux0 * I_SCALE, I_OY + uy0 * I_SCALE
+        best = None
+        for i, (t, x, y) in enumerate(samples):
+            dd = math.hypot(px - x, py - y)
+            if best is None or dd < best[0]:
+                best = (dd, i)
+        dist, i = best
+        attrs = ""
+        if dist < R:
+            t, x, y = samples[i]
+            _, xa, ya = samples[max(i - 1, 0)]
+            _, xb, yb = samples[min(i + 1, len(samples) - 1)]
+            ax, ay = px - x, py - y
+            n = math.hypot(ax, ay) or 1
+            vx, vy = xb - xa, yb - ya
+            vn = math.hypot(vx, vy) or 1
+            dx, dy = 0.75 * ax / n + 0.45 * vx / vn, 0.75 * ay / n + 0.45 * vy / vn
+            dn = math.hypot(dx, dy) or 1
+            mag = MAXPUSH * (1 - dist / R) ** 1.3 / I_SCALE
+            delay = (t - 0.2) % I_CYCLE
+            attrs = (f' class="pc" style="--dx:{dx / dn * mag:.1f}px;--dy:{dy / dn * mag:.1f}px;'
+                     f'animation-delay:{delay:.2f}s"')
+        body = ""
+        for sw, pts in zip(SW, buckets):
+            if pts:
+                body += f'<path stroke-width="{sw}" d="' + "".join(f"M{x} {y}h0" for x, y in pts) + '"/>'
+        groups.append(f'<g{attrs} stroke="{_tint(ux0)}">{body}</g>')
+
+    # loose particles that stream off the portrait toward the text
+    rnd = random.Random(11)
+    flow = []
+    for _ in range(170):
+        x, y, v = rnd.choice(dots)
+        cxp, cyp = I_OX + x * 2 * I_SCALE, I_OY + y * 2 * I_SCALE
+        if rnd.random() < 0.5:
+            cxp, cyp = I_OX + rnd.uniform(40, 330) * 1.2, I_OY + rnd.uniform(380, 500) * 1.2
+        col = rnd.choice((TEXT, TEXT, "#ffd978", CYAN, "#ffb057"))
+        flow.append(
+            f'<circle class="fl" cx="{cxp:.0f}" cy="{cyp:.0f}" r="{rnd.choice((1, 1.2, 1.6, 2)):.1f}" fill="{col}" '
+            f'style="--fx:{rnd.uniform(120, 460):.0f}px;--fy:{rnd.uniform(-170, 70):.0f}px;'
+            f'animation-duration:{rnd.uniform(6, 13):.1f}s;animation-delay:{-rnd.uniform(0, 13):.1f}s"/>')
+
+    s = svg_open(I_W, I_H, f"{NAME} — intro",
+                 "Portrait drawn as thousands of particles. A live cursor labelled Bharath sweeps across it, "
+                 "pushing the particles aside, then clicks a Say hello button. " + " ".join(INTRO["para"]))
+    s += f"<style>{css}</style>\n<defs>{GRID_DEF}\n"
+    s += (f'<radialGradient id="gC" cx="22%" cy="45%" r="50%"><stop offset="0" stop-color="{GOLD}" stop-opacity=".16"/>'
+          f'<stop offset="1" stop-color="{GOLD}" stop-opacity="0"/></radialGradient>\n'
+          f'<radialGradient id="gV" cx="95%" cy="100%" r="60%"><stop offset="0" stop-color="{VIOLET}" stop-opacity=".18"/>'
+          f'<stop offset="1" stop-color="{VIOLET}" stop-opacity="0"/></radialGradient>\n'
+          f'<radialGradient id="curglow"><stop offset="0" stop-color="{CYAN}" stop-opacity=".30"/>'
+          f'<stop offset="1" stop-color="{CYAN}" stop-opacity="0"/></radialGradient>\n'
+          f'<linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="560" y1="0" x2="1000" y2="0">'
+          f'<stop offset="0" stop-color="{CYAN}"/><stop offset="1" stop-color="{VIOLET}"/></linearGradient>\n'
+          f'<linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{CYAN}" stop-opacity=".6"/>'
+          f'<stop offset=".5" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="{VIOLET}" stop-opacity=".6"/></linearGradient>\n'
+          f'<linearGradient id="gBtn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{CYAN}"/><stop offset="1" stop-color="{VIOLET}"/></linearGradient>\n'
+          f'<clipPath id="clip"><rect width="{I_W}" height="{I_H}" rx="18"/></clipPath></defs>\n')
+    s += '<g clip-path="url(#clip)">\n'
+    s += f'<rect width="{I_W}" height="{I_H}" fill="{INK}"/><rect width="{I_W}" height="{I_H}" fill="url(#grid)"/>\n'
+    s += f'<rect width="{I_W}" height="{I_H}" fill="url(#gC)"/><rect width="{I_W}" height="{I_H}" fill="url(#gV)"/>\n'
+    s += plankton(30, 30, 1170, 20, 620, seed=71) + "\n"
+    s += f'<g transform="translate({I_OX} {I_OY}) scale({I_SCALE})" fill="none" stroke-linecap="round">\n' + "\n".join(groups) + "\n</g>\n"
+    s += "<g>\n" + "\n".join(flow) + "\n</g>\n"
+
+    # copy
+    s += (f'<g class="rise" style="animation-delay:.1s"><rect x="560" y="106" width="8" height="8" rx="2" fill="{GOLD}"/>'
+          f'<text x="580" y="115" class="mono" font-size="13" letter-spacing="3" fill="{MUTED}" xml:space="preserve">{esc(INTRO["eyebrow"])}</text></g>\n')
+    s += (f'<g class="rise" style="animation-delay:.25s"><text x="558" y="196" class="serif" font-size="68" font-weight="500" '
+          f'fill="{TEXT}" letter-spacing="-1">{esc(INTRO["line1"])}</text>'
+          f'<text x="558" y="264" class="serif" font-size="58" font-weight="500" font-style="italic" fill="url(#gName)">{esc(INTRO["line2"])}</text></g>\n')
+    for i, line in enumerate(INTRO["para"]):
+        s += (f'<text class="rise sans" x="560" y="{316 + i * 29}" font-size="18" fill="{MUTED if i else TEXT}" '
+              f'style="animation-delay:{0.45 + i * 0.1:.2f}s">{esc(line)}</text>\n')
+    x = 560
+    s += '<g class="rise" style="animation-delay:.95s">'
+    for p in INTRO["pills"]:
+        w = len(p) * 7.9 + 34
+        s += (f'<rect x="{x}" y="442" width="{w:.0f}" height="34" rx="17" fill="{INK2}" stroke="url(#gStroke)" stroke-width="1"/>'
+              f'<circle cx="{x + 16}" cy="459" r="3" fill="{CYAN}"/>'
+              f'<text x="{x + 28}" y="463.5" class="mono" font-size="13" textLength="{len(p) * 7.9:.0f}" lengthAdjust="spacing" fill="{TEXT}">{esc(p)}</text>')
+        x += w + 12
+    s += "</g>\n"
+    bx, by, bw, bh = BTN
+    s += (f'<g class="rise" style="animation-delay:1.05s"><rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="{bh / 2}" fill="url(#gBtn)"/>'
+          f'<rect class="flash" x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="{bh / 2}" fill="#fff" style="animation-delay:{CLICK_T - 0.1}s"/>'
+          f'<text x="{bx + bw / 2 - 8}" y="{by + 30}" text-anchor="middle" class="sans" font-size="17" font-weight="600" fill="{INK}">{esc(INTRO["button"])}</text>'
+          f'<path d="M{bx + bw - 46} {by + 24}h14m-5 -5l5 5l-5 5" fill="none" stroke="{INK}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>\n')
+    s += (f'<circle class="rip" cx="{CURSOR_WAY[9][1]}" cy="{CURSOR_WAY[9][2]}" r="46" fill="none" stroke="{CYAN}" stroke-width="2.5" '
+          f'style="animation-delay:{CLICK_T}s"/>\n')
+
+    # the live cursor
+    lab = INTRO["cursor_label"]
+    lw = len(lab) * 8.2 + 22
+    s += (f'<g class="cur" transform="translate({CURSOR_WAY[9][1]} {CURSOR_WAY[9][2]})">'
+          f'<circle r="70" fill="url(#curglow)"/>'
+          f'<g class="dip"><path d="M0 0L0 19.5L5.2 14.8L8.6 22.4L11.6 21.1L8.3 13.7L15 13.4Z" fill="#fff" stroke="{INK2}" stroke-width="1.4" stroke-linejoin="round"/>'
+          f'<g transform="translate(13 22)"><rect width="{lw:.0f}" height="24" rx="12" fill="url(#gBtn)"/>'
+          f'<text x="{lw / 2:.0f}" y="16" text-anchor="middle" class="sans" font-size="12" font-weight="600" fill="{INK}">{esc(lab)}</text></g></g></g>\n')
+    s += "</g>\n</svg>\n"
+    return s
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     files = {"hero.svg": build_hero(), "lumina.svg": build_lumina(),
              "composer.svg": build_composer(), "footer.svg": build_footer()}
     for name, label in CHIPS:
         files[f"{name}.svg"] = build_chip(label)
+    import sys
+    if "--photo" in sys.argv:
+        files["intro.svg"] = build_intro(sys.argv[sys.argv.index("--photo") + 1])
     for name, content in files.items():
         (OUT / name).write_text(content, encoding="utf-8")
         print(f"wrote assets/{name}  ({len(content) / 1024:.1f} KB)")
