@@ -99,19 +99,35 @@ def svg_open(w, h, title, desc):
     )
 
 
-# binary stream geometry (monospace cells; textLength pins the width so every font lines up)
-CW = 7.8                                # cell width at 13px
-BIN_FS = 13
+# binary stream geometry (monospace cells; textLength pins every row's width so all fonts line up)
+CW = 7.8                                # cell width at 13px (also used by the footer wave)
 BIN_BYTES = 12                          # bytes per repeating unit
-BIN_PERIOD = BIN_BYTES * 9 * CW         # px per unit: the scroll distance of one seamless loop
+BIN_FONTS = (9, 13, 18)                 # three depth layers: far, mid, near
+
+
+def bin_period(fs):
+    return BIN_BYTES * 9 * fs * 0.6     # px per unit = the scroll distance of one seamless loop
+
+
+BIN_CSS = "".join(
+    f"@keyframes bl{fs}{{{{to{{{{transform:translateX(-{bin_period(fs):.1f}px)}}}}}}}}"
+    f"@keyframes br{fs}{{{{from{{{{transform:translateX(-{bin_period(fs):.1f}px)}}}}to{{{{transform:translateX(0)}}}}}}}}"
+    f".bl{fs}{{{{animation:bl{fs} 30s linear infinite}}}} .br{fs}{{{{animation:br{fs} 30s linear infinite}}}}\n"
+    for fs in BIN_FONTS)
 
 BASE_CSS = f"""
 .mono{{font-family:{MONO}}} .sans{{font-family:{SANS}}} .serif{{font-family:{SERIF}}}
 @keyframes twinkle{{0%,100%{{opacity:.08}}50%{{opacity:.75}}}}
 .tw{{animation:twinkle 4s ease-in-out infinite}}
-@keyframes bl{{to{{transform:translateX(-{BIN_PERIOD:.1f}px)}}}}
-@keyframes brr{{from{{transform:translateX(-{BIN_PERIOD:.1f}px)}}to{{transform:translateX(0)}}}}
-.bl{{animation:bl 30s linear infinite}} .brr{{animation:brr 30s linear infinite}}
+{BIN_CSS}
+@keyframes rp{{0%,100%{{opacity:.62}}50%{{opacity:1}}}}
+.rp{{animation:rp 6s ease-in-out infinite}}
+@keyframes pk{{0%{{transform:translateX(0);opacity:0}}12%,78%{{opacity:1}}100%{{transform:translateX(var(--pk));opacity:0}}}}
+.pk{{opacity:0;animation:pk 3s cubic-bezier(.35,0,.25,1) infinite}}
+@keyframes spin{{to{{transform:rotate(360deg)}}}}
+@keyframes spinr{{to{{transform:rotate(-360deg)}}}}
+.ring1{{transform-box:fill-box;transform-origin:center;animation:spin 70s linear infinite}}
+.ring2{{transform-box:fill-box;transform-origin:center;animation:spinr 110s linear infinite}}
 @keyframes scan{{0%{{transform:translateY(-60px);opacity:0}}15%,85%{{opacity:1}}100%{{transform:translateY(380px);opacity:0}}}}
 .scan{{animation:scan 5.5s cubic-bezier(.4,0,.6,1) infinite}}
 """
@@ -119,36 +135,85 @@ BASE_CSS = f"""
 # --------------------------------------------------------------------------
 # flowing binary streams (replaces the old ASCII jellyfish)
 # --------------------------------------------------------------------------
-def _bit_unit(rnd):
+LAYERS = (  # fs, row gap, row offset, opacity range, seconds per loop, share of glowing bits, glow, blur
+    dict(fs=9, gap=11, off=0, op=(0.14, 0.30), dur=(60, 110), hi=0.05, glow=0, blur=0.45),
+    dict(fs=13, gap=17, off=5, op=(0.36, 0.66), dur=(22, 48), hi=0.11, glow=2.2, blur=0),
+    dict(fs=18, gap=27, off=13, op=(0.45, 0.8), dur=(13, 26), hi=0.14, glow=3.5, blur=0),
+)
+
+
+def _bit_unit(rnd, hi_p):
     base, hi = [], []
     for _ in range(BIN_BYTES):
         byte = "".join(rnd.choice("01") for _ in range(8))
         base.append(byte + " ")
-        hi.append("".join(ch if rnd.random() < 0.11 else " " for ch in byte) + " ")
+        hi.append("".join(ch if rnd.random() < hi_p else " " for ch in byte) + " ")
     return "".join(base), "".join(hi)
 
 
-def binary_field(x, y, w, h, seed=1, gap=17, color_a=CYAN, color_b=VIOLET, opacity=1.0):
-    """rows of 0/1 scrolling in alternating directions; a few bits per row glow white"""
+def binary_field(x, y, w, h, seed=1, color_a=CYAN, color_b=VIOLET, opacity=1.0, packets=7):
+    """three depth layers of scrolling 0/1 rows (far = tiny, slow, blurred; near = large, fast, glowing),
+    rows that breathe in a travelling wave, glowing bits, and short data packets racing along the rows"""
     rnd = random.Random(seed)
-    rows = int(h // gap)
-    reps = int((w + BIN_PERIOD) // BIN_PERIOD) + 2
-    out = [f'<g opacity="{opacity}" class="mono" font-size="{BIN_FS}">']
-    for r in range(rows):
-        base, hi = _bit_unit(rnd)
-        col = _lerp_hex(color_a, color_b, r / max(rows - 1, 1))
-        dur = rnd.uniform(16, 44)
-        cls = "bl" if r % 2 == 0 else "brr"
-        tl = len(base) * reps * CW
-        yy = y + r * gap
+    out = [f'<g opacity="{opacity}" class="mono">',
+           f'<defs><linearGradient id="pk{seed}"><stop offset="0" stop-color="{CYAN}" stop-opacity="0"/>'
+           f'<stop offset=".7" stop-color="{CYAN}" stop-opacity=".9"/><stop offset="1" stop-color="#fff"/></linearGradient></defs>']
+    mid_rows = []
+    for L in LAYERS:
+        fs, gap = L["fs"], L["gap"]
+        period = bin_period(fs)
+        reps = int((w + period) // period) + 2
+        rows = int((h - L["off"]) // gap)
+        style = []
+        if L["blur"]:
+            style.append(f"filter:blur({L['blur']}px)")
+        elif L["glow"]:
+            style.append(f"filter:drop-shadow(0 0 {L['glow']}px {CYAN}99)")
+        out.append(f'<g font-size="{fs}" style="{";".join(style)}">')
+        for r in range(rows):
+            base, hi = _bit_unit(rnd, L["hi"])
+            yy = y + L["off"] + r * gap
+            if fs == 13:
+                mid_rows.append(yy)
+            col = _lerp_hex(color_a, color_b, r / max(rows - 1, 1))
+            dur = rnd.uniform(*L["dur"])
+            cls = f"bl{fs}" if r % 2 == 0 else f"br{fs}"
+            tl = len(base) * reps * fs * 0.6
+            pdur = rnd.uniform(4.5, 8)
+            out.append(
+                f'<g class="rp" style="animation-duration:{pdur:.1f}s;animation-delay:{-(r * 0.35) % pdur:.2f}s">'
+                f'<g class="{cls}" style="animation-duration:{dur:.1f}s;animation-delay:{-rnd.uniform(0, dur):.1f}s">'
+                f'<text x="{x}" y="{yy}" textLength="{tl:.1f}" lengthAdjust="spacing" xml:space="preserve" '
+                f'fill="{col}" fill-opacity="{rnd.uniform(*L["op"]):.2f}">{base * reps}</text>'
+                + (f'<text x="{x}" y="{yy}" textLength="{tl:.1f}" lengthAdjust="spacing" xml:space="preserve" '
+                   f'fill="#ffffff" fill-opacity="1">{hi * reps}</text>' if L["hi"] else "")
+                + '</g></g>')
+        out.append("</g>")
+    for _ in range(packets):                       # data packets: short bright streaks racing along a row
+        yy = rnd.choice(mid_rows) - 4
+        pw = rnd.uniform(60, 120)
         out.append(
-            f'<g class="{cls}" style="animation-duration:{dur:.1f}s;animation-delay:{-rnd.uniform(0, dur):.1f}s">'
-            f'<text x="{x}" y="{yy}" textLength="{tl:.1f}" lengthAdjust="spacing" xml:space="preserve" '
-            f'fill="{col}" fill-opacity="{rnd.uniform(0.38, 0.7):.2f}">{base * reps}</text>'
-            f'<text x="{x}" y="{yy}" textLength="{tl:.1f}" lengthAdjust="spacing" xml:space="preserve" '
-            f'fill="#ffffff" fill-opacity="1">{hi * reps}</text></g>')
+            f'<rect class="pk" x="{x - 10}" y="{yy:.0f}" width="{pw:.0f}" height="1.6" rx=".8" fill="url(#pk{seed})" '
+            f'style="--pk:{w * rnd.uniform(0.7, 1.0):.0f}px;animation-duration:{rnd.uniform(2.4, 4.2):.1f}s;'
+            f'animation-delay:{-rnd.uniform(0, 4):.1f}s"/>')
     out.append("</g>")
     return "\n".join(out)
+
+
+def hud_rings(cx, cy, r, opacity=1.0, labels=True):
+    """slow counter-rotating dashed rings and tiny readouts around a stream"""
+    o = [f'<g opacity="{opacity}" fill="none">',
+         f'<circle class="ring1" cx="{cx}" cy="{cy}" r="{r}" stroke="{CYAN}" stroke-opacity=".22" stroke-dasharray="1.5 9"/>',
+         f'<circle class="ring2" cx="{cx}" cy="{cy}" r="{r + 26}" stroke="{VIOLET}" stroke-opacity=".2" stroke-dasharray="46 16 6 16"/>',
+         f'<circle cx="{cx}" cy="{cy}" r="{r - 24}" stroke="#fff" stroke-opacity=".05"/>']
+    if labels:
+        o.append(f'<text x="{cx}" y="{cy - r - 36}" text-anchor="middle" class="mono" font-size="10" letter-spacing="3" '
+                 f'fill="{MUTED}" fill-opacity=".8" stroke="none">STREAM 01  ·  LIVE</text>')
+        o.append(f'<text x="{cx}" y="{cy + r + 46}" text-anchor="middle" class="mono" font-size="10" letter-spacing="3" '
+                 f'fill="{MUTED}" fill-opacity=".6" stroke="none">0x7F  ·  SYNC  OK</text>')
+        o.append(f'<circle class="tw" cx="{cx - 62}" cy="{cy - r - 39}" r="2.4" fill="{CYAN}" stroke="none"/>')
+    o.append("</g>")
+    return "\n".join(o)
 
 
 def plankton(n, x0, x1, y0, y1, seed=7):
@@ -229,9 +294,10 @@ def build_hero():
 
     # binary data stream, fading out toward the edges
     s += '<g mask="url(#bm)">\n'
-    s += binary_field(670, 48, 520, 360, seed=3) + "\n"
+    s += binary_field(670, 40, 530, 380, seed=3, opacity=0.85) + "\n"
     s += '<rect class="scan" x="660" y="14" width="540" height="60" fill="url(#scanG)"/>\n'
     s += "</g>\n"
+    s += hud_rings(935, 230, 172, 0.95) + "\n"
 
     # copy
     s += f'<g class="rise" style="animation-delay:.05s"><rect x="64" y="86" width="8" height="8" rx="2" fill="{GOLD}"/>'
@@ -417,7 +483,8 @@ def build_lumina():
               f'style="animation-name:rm{j}"/>\n')
     s += f'<rect width="{LW}" height="{LHT}" fill="url(#grid)"/>\n'
     s += f'<rect width="{LW}" height="{LHT}" fill="url(#shade)"/><rect width="{LW}" height="{LHT}" fill="url(#shadeL)"/>\n'
-    s += '<g mask="url(#lm)">\n' + binary_field(760, 124, 400, 190, seed=5, opacity=0.55) + "\n</g>\n"
+    s += '<g mask="url(#lm)">\n' + binary_field(750, 116, 420, 210, seed=5, opacity=0.62) + "\n</g>\n"
+    s += hud_rings(960, 222, 92, 0.55, labels=False) + "\n"
 
     # chrome
     s += (f'<text x="{LW - 64}" y="84" text-anchor="end" class="mono" font-size="12" letter-spacing="3" fill="{FAINT}">'
