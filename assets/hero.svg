@@ -1,19 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="t d">
 <title id="t">H S Bharath Surya — profile banner</title>
-<desc id="d">H S Bharath Surya, AI Systems Architect · CS @ Newton School of Technology. Animated ASCII jellyfish drift over a dark ocean grid while a prompt box rotates through what I build.</desc>
+<desc id="d">H S Bharath Surya, AI Systems Architect · CS @ Newton School of Technology. Rows of binary code stream across a dark grid while a prompt box rotates through what I build.</desc>
 <style>
 .mono{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace} .sans{font-family:Geist,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif} .serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif}
-@keyframes pulse{0%,100%{transform:scale(1,1)}45%{transform:scale(.93,1.06)}}
-@keyframes fa{0%,33.3%{opacity:1}33.4%,100%{opacity:0}}
-@keyframes fb{0%,33.3%{opacity:0}33.4%,66.6%{opacity:1}66.7%,100%{opacity:0}}
-@keyframes fc{0%,66.6%{opacity:0}66.7%,100%{opacity:1}}
-@keyframes driftA{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-24px)}}
-@keyframes driftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,-16px)}}
 @keyframes twinkle{0%,100%{opacity:.08}50%{opacity:.75}}
-.bell{transform-box:fill-box;transform-origin:50% 0;animation:pulse 3.6s ease-in-out infinite}
-.fa{animation:fa 1.8s steps(1) infinite} .fb{animation:fb 1.8s steps(1) infinite} .fc{animation:fc 1.8s steps(1) infinite}
-.dA{animation:driftA 9s ease-in-out infinite} .dB{animation:driftB 11s ease-in-out infinite}
 .tw{animation:twinkle 4s ease-in-out infinite}
+@keyframes bl{to{transform:translateX(-842.4px)}}
+@keyframes brr{from{transform:translateX(-842.4px)}to{transform:translateX(0)}}
+.bl{animation:bl 30s linear infinite} .brr{animation:brr 30s linear infinite}
+@keyframes scan{0%{transform:translateY(-60px);opacity:0}15%,85%{opacity:1}100%{transform:translateY(380px);opacity:0}}
+.scan{animation:scan 5.5s cubic-bezier(.4,0,.6,1) infinite}
 
 @keyframes hl{0%{opacity:0;transform:translateY(10px);filter:blur(8px)}
   3.20%{opacity:1;transform:none;filter:blur(0)}
@@ -31,7 +27,9 @@
 <radialGradient id="gV" cx="12%" cy="105%" r="60%"><stop offset="0" stop-color="#b9a6ff" stop-opacity=".22"/><stop offset="1" stop-color="#b9a6ff" stop-opacity="0"/></radialGradient>
 <linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="170" y1="0" x2="560" y2="0"><stop offset="0" stop-color="#7ce8f2"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient>
 <linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="#b9a6ff" stop-opacity=".55"/></linearGradient>
-<mask id="fadeR"><linearGradient id="fr" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".18" stop-color="#fff"/></linearGradient><rect width="1200" height="440" fill="url(#fr)"/></mask>
+<radialGradient id="bmg"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<mask id="bm" maskUnits="userSpaceOnUse" x="660" y="14" width="540" height="410"><rect x="660" y="14" width="540" height="410" fill="url(#bmg)"/></mask>
+<linearGradient id="scanG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ce8f2" stop-opacity="0"/><stop offset=".5" stop-color="#7ce8f2" stop-opacity=".30"/><stop offset="1" stop-color="#7ce8f2" stop-opacity="0"/></linearGradient>
 <clipPath id="clip"><rect width="1200" height="440" rx="18"/></clipPath></defs>
 <g clip-path="url(#clip)">
 <rect width="1200" height="440" fill="#04060a"/><rect width="1200" height="440" fill="url(#grid)"/>
@@ -70,135 +68,31 @@
 <circle class="tw" cx="261" cy="262" r="1.4" fill="#f1f4f8" style="animation-delay:3.23s;animation-duration:5.9s"/>
 <circle class="tw" cx="438" cy="410" r="1" fill="#7ce8f2" style="animation-delay:0.41s;animation-duration:4.9s"/>
 <circle class="tw" cx="425" cy="213" r="1" fill="#f1f4f8" style="animation-delay:3.64s;animation-duration:4.4s"/>
-<g mask="url(#fadeR)">
-<g transform="translate(770 58) scale(1.7)" opacity="0.95">
-<g class="dA" style="animation-delay:0s;animation-duration:10s;filter:drop-shadow(0 0 7px #7ce8f266)">
-<g class="mono bell" font-size="14">
-<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.95">    .-"""""-.    </text>
-<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.9">  .'  . : .  '.  </text>
-<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.85"> /  . : : : .  \ </text>
-<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.8">|  : : : : : :  |</text>
-<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.75">|.'  : : : :  '.|</text>
-<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
+<g mask="url(#bm)">
+<g opacity="1.0" class="mono" font-size="13">
+<g class="bl" style="animation-duration:30.3s;animation-delay:-16.9s"><text x="670" y="48" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.70">00110011 01000010 10100010 10101010 01010011 10010000 01111011 10100111 11110101 01010101 01011000 10111111 00110011 01000010 10100010 10101010 01010011 10010000 01111011 10100111 11110101 01010101 01011000 10111111 00110011 01000010 10100010 10101010 01010011 10010000 01111011 10100111 11110101 01010101 01011000 10111111 </text><text x="670" y="48" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">                                0     0 0                          01       0     1                  1                                      0     0 0                          01       0     1                  1                                      0     0 0                          01       0     1                  1      </text></g>
+<g class="brr" style="animation-duration:43.8s;animation-delay:-21.0s"><text x="670" y="65" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#7fe5f3" fill-opacity="0.57">00111001 00100100 01000000 10110110 11010111 00011101 10101001 10100100 00011100 00000111 01101000 01011101 00111001 00100100 01000000 10110110 11010111 00011101 10101001 10100100 00011100 00000111 01101000 01011101 00111001 00100100 01000000 10110110 11010111 00011101 10101001 10100100 00011100 00000111 01101000 01011101 </text><text x="670" y="65" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">  1                   0  0   11 1            0     0            010  0       1       0             0          1                   0  0   11 1            0     0            010  0       1       0             0          1                   0  0   11 1            0     0            010  0       1       0             0        </text></g>
+<g class="bl" style="animation-duration:28.3s;animation-delay:-12.9s"><text x="670" y="82" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#82e1f3" fill-opacity="0.39">10101010 00010010 10011111 10110111 01101000 11011100 00110111 00011001 11111111 00001010 11110000 00100011 10101010 00010010 10011111 10110111 01101000 11011100 00110111 00011001 11111111 00001010 11110000 00100011 10101010 00010010 10011111 10110111 01101000 11011100 00110111 00011001 11111111 00001010 11110000 00100011 </text><text x="670" y="82" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">   0       01     1      1             0     1    1 0   1               1  1        0  1            0   0      0       01     1      1             0     1    1 0   1               1  1        0  1            0   0      0       01     1      1             0     1    1 0   1               1  1        0  1            0   0   </text></g>
+<g class="brr" style="animation-duration:36.6s;animation-delay:-17.0s"><text x="670" y="99" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#85def4" fill-opacity="0.61">11111100 00000110 00001100 11010111 01001011 10101110 11110110 00111100 00000010 00000001 11101110 11000101 11111100 00000110 00001100 11010111 01001011 10101110 11110110 00111100 00000010 00000001 11101110 11000101 11111100 00000110 00001100 11010111 01001011 10101110 11110110 00111100 00000010 00000001 11101110 11000101 </text><text x="670" y="99" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">      0  00   1            1   011     0   1            1   1                    0         1                      0  00   1            1   011     0   1            1   1                    0         1                      0  00   1            1   011     0   1            1   1                    0         1                </text></g>
+<g class="bl" style="animation-duration:28.1s;animation-delay:-5.1s"><text x="670" y="116" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#88dbf5" fill-opacity="0.39">11011110 00011101 11110111 10000000 10001110 01000011 11010000 01101101 10110110 10011101 01011111 11001000 11011110 00011101 11110111 10000000 10001110 01000011 11010000 01101101 10110110 10011101 01011111 11001000 11011110 00011101 11110111 10000000 10001110 01000011 11010000 01101101 10110110 10011101 01011111 11001000 </text><text x="670" y="116" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">   1                   1    0                   0                    0     1 1     0                           1                   1    0                   0                    0     1 1     0                           1                   1    0                   0                    0     1 1     0                        </text></g>
+<g class="brr" style="animation-duration:33.4s;animation-delay:-11.8s"><text x="670" y="133" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#8bd8f5" fill-opacity="0.63">00001011 10110111 01011000 11011100 11110001 10011100 11011111 00011100 10101011 01101011 00111011 00001111 00001011 10110111 01011000 11011100 11110001 10011100 11011111 00011100 10101011 01101011 00111011 00001111 00001011 10110111 01011000 11011100 11110001 10011100 11011111 00011100 10101011 01101011 00111011 00001111 </text><text x="670" y="133" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">   0   1           1                                           0                  1  1         0               0   1           1                                           0                  1  1         0               0   1           1                                           0                  1  1         0            </text></g>
+<g class="bl" style="animation-duration:40.8s;animation-delay:-5.6s"><text x="670" y="150" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#8ed4f6" fill-opacity="0.38">01011010 11010011 10001001 00110011 11010101 01111101 10101101 00001111 11010001 01000110 11000010 10000011 01011010 11010011 10001001 00110011 11010101 01111101 10101101 00001111 11010001 01000110 11000010 10000011 01011010 11010011 10001001 00110011 11010101 01111101 10101101 00001111 11010001 01000110 11000010 10000011 </text><text x="670" y="150" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1"> 1                                                             0           1                     0           1                                                             0           1                     0           1                                                             0           1                     0          </text></g>
+<g class="brr" style="animation-duration:21.6s;animation-delay:-4.5s"><text x="670" y="167" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#91d1f7" fill-opacity="0.50">01111000 01011011 01001010 11001010 10100010 10101000 10101101 11101011 01010011 11000001 10000001 10001111 01111000 01011011 01001010 11001010 10100010 10101000 10101101 11101011 01010011 11000001 10000001 10001111 01111000 01011011 01001010 11001010 10100010 10101000 10101101 11101011 01010011 11000001 10000001 10001111 </text><text x="670" y="167" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">   1   0  1                         1  0                           1              1                 0          1   0  1                         1  0                           1              1                 0          1   0  1                         1  0                           1              1                 0       </text></g>
+<g class="bl" style="animation-duration:42.2s;animation-delay:-26.4s"><text x="670" y="184" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#94cef7" fill-opacity="0.46">01001100 01101010 10101100 00011001 10100011 11110101 00100100 00000010 11100001 10001110 11111001 11010011 01001100 01101010 10101100 00011001 10100011 11110101 00100100 00000010 11100001 10001110 11111001 11010011 01001100 01101010 10101100 00011001 10100011 11110101 00100100 00000010 11100001 10001110 11111001 11010011 </text><text x="670" y="184" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">              0            0  1  0                  1     0     0  0                    0 1  1                            0            0  1  0                  1     0     0  0                    0 1  1                            0            0  1  0                  1     0     0  0                    0 1  1              </text></g>
+<g class="brr" style="animation-duration:30.1s;animation-delay:-0.7s"><text x="670" y="201" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#97caf8" fill-opacity="0.41">01100011 11100001 01000101 11001111 01011011 11100100 10111100 11010111 11000010 01110010 11111101 11011000 01100011 11100001 01000101 11001111 01011011 11100100 10111100 11010111 11000010 01110010 11111101 11011000 01100011 11100001 01000101 11001111 01011011 11100100 10111100 11010111 11000010 01110010 11111101 11011000 </text><text x="670" y="201" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">          1                   0                        0                                   1          1  0            1                   0                        0                                   1          1  0            1                   0                        0                                   1          1  0  </text></g>
+<g class="bl" style="animation-duration:23.0s;animation-delay:-7.4s"><text x="670" y="218" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#9ac7f8" fill-opacity="0.53">10110000 10000111 01000001 00100110 00111110 10011011 10110010 11100000 11101001 00110110 11111000 11011011 10110000 10000111 01000001 00100110 00111110 10011011 10110010 11100000 11101001 00110110 11111000 11011011 10110000 10000111 01000001 00100110 00111110 10011011 10110010 11100000 11101001 00110110 11111000 11011011 </text><text x="670" y="218" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">      0   0    1     00         1 0  0  1  0 1    0                        0         0  0           1     1       0   0    1     00         1 0  0  1  0 1    0                        0         0  0           1     1       0   0    1     00         1 0  0  1  0 1    0                        0         0  0           1     1 </text></g>
+<g class="brr" style="animation-duration:23.1s;animation-delay:-17.6s"><text x="670" y="235" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#9ec4f9" fill-opacity="0.55">11010110 11101001 11100101 01000001 00110001 11010110 01001010 10111010 11011000 10100111 01011100 11011101 11010110 11101001 11100101 01000001 00110001 11010110 01001010 10111010 11011000 10100111 01011100 11011101 11010110 11101001 11100101 01000001 00110001 11010110 01001010 10111010 11011000 10100111 01011100 11011101 </text><text x="670" y="235" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">    0  0            1                             1                1 1   1            1              0   0      0  0            1                             1                1 1   1            1              0   0      0  0            1                             1                1 1   1            1              0   0  </text></g>
+<g class="bl" style="animation-duration:40.3s;animation-delay:-29.2s"><text x="670" y="252" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#a1c0fa" fill-opacity="0.54">11111011 10001111 00110011 10001000 11011110 10001111 11111000 01000001 11001010 00111101 01101100 10010101 11111011 10001111 00110011 10001000 11011110 10001111 11111000 01000001 11001010 00111101 01101100 10010101 11111011 10001111 00110011 10001000 11011110 10001111 11111000 01000001 11001010 00111101 01101100 10010101 </text><text x="670" y="252" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">1               1    10                            11                                                   10  1               1    10                            11                                                   10  1               1    10                            11                                                   10  </text></g>
+<g class="brr" style="animation-duration:42.3s;animation-delay:-7.4s"><text x="670" y="269" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#a4bdfa" fill-opacity="0.46">00011110 01100110 11101111 11100111 10111001 10010010 10000010 11111110 01010100 01011011 00100000 11111001 00011110 01100110 11101111 11100111 10111001 10010010 10000010 11111110 01010100 01011011 00100000 11111001 00011110 01100110 11101111 11100111 10111001 10010010 10000010 11111110 01010100 01011011 00100000 11111001 </text><text x="670" y="269" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">    1      1        1  1      0     1        1     1    0        1  1                          00     1   1     1      1        1  1      0     1        1     1    0        1  1                          00     1   1     1      1        1  1      0     1        1     1    0        1  1                          00     1   1 </text></g>
+<g class="bl" style="animation-duration:18.6s;animation-delay:-11.8s"><text x="670" y="286" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#a7bafb" fill-opacity="0.46">10010110 01010110 01111100 10110101 00100011 11011100 11110011 00010010 01110111 11000010 11011000 10000110 10010110 01010110 01111100 10110101 00100011 11011100 11110011 00010010 01110111 11000010 11011000 10000110 10010110 01010110 01111100 10110101 00100011 11011100 11110011 00010010 01110111 11000010 11011000 10000110 </text><text x="670" y="286" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">               1           1                              0           0                1  1                                1           1                              0           0                1  1                                1           1                              0           0                1  1                 </text></g>
+<g class="brr" style="animation-duration:24.9s;animation-delay:-11.3s"><text x="670" y="303" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#aab6fc" fill-opacity="0.64">10000100 00010010 00010100 10010100 01111110 11110000 10010000 00101101 00001000 11001101 01011010 11111010 10000100 00010010 00010100 10010100 01111110 11110000 10010000 00101101 00001000 11001101 01011010 11111010 10000100 00010010 00010100 10010100 01111110 11110000 10010000 00101101 00001000 11001101 01011010 11111010 </text><text x="670" y="303" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1"> 0          1   0                               1                                             1  0  1  1     0          1   0                               1                                             1  0  1  1     0          1   0                               1                                             1  0  1  1    </text></g>
+<g class="bl" style="animation-duration:34.2s;animation-delay:-33.3s"><text x="670" y="320" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#adb3fc" fill-opacity="0.68">01100101 00100011 11001101 11110100 00011101 01101110 00101010 10000010 00100110 01101010 10011011 01000001 01100101 00100011 11001101 11110100 00011101 01101110 00101010 10000010 00100110 01101010 10011011 01000001 01100101 00100011 11001101 11110100 00011101 01101110 00101010 10000010 00100110 01101010 10011011 01000001 </text><text x="670" y="320" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">0           0                                    1          10    0   0    0        0                       0           0                                    1          10    0   0    0        0                       0           0                                    1          10    0   0    0        0                       </text></g>
+<g class="brr" style="animation-duration:23.7s;animation-delay:-23.2s"><text x="670" y="337" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#b0b0fd" fill-opacity="0.42">01110010 10000001 11101100 01110101 10011001 11111000 00000011 11011100 10111001 01011111 10000100 11101001 01110010 10000001 11101100 01110101 10011001 11111000 00000011 11011100 10111001 01011111 10000100 11101001 01110010 10000001 11101100 01110101 10011001 11111000 00000011 11011100 10111001 01011111 10000100 11101001 </text><text x="670" y="337" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">  1         0      1          1      0  1  1                                          1                       1         0      1          1      0  1  1                                          1                       1         0      1          1      0  1  1                                          1                     </text></g>
+<g class="bl" style="animation-duration:24.7s;animation-delay:-20.1s"><text x="670" y="354" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#b3adfe" fill-opacity="0.66">11011100 10000111 10010011 01001111 01010110 10101000 10010001 00011110 10010100 11110001 01011100 01100101 11011100 10000111 10010011 01001111 01010110 10101000 10010001 00011110 10010100 11110001 01011100 01100101 11011100 10000111 10010011 01001111 01010110 10101000 10010001 00011110 10010100 11110001 01011100 01100101 </text><text x="670" y="354" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">      0           1           0          1      0               0  1  0 10                                        0           1           0          1      0               0  1  0 10                                        0           1           0          1      0               0  1  0 10                                  </text></g>
+<g class="brr" style="animation-duration:41.1s;animation-delay:-19.1s"><text x="670" y="371" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#b6a9fe" fill-opacity="0.63">11000101 00110111 10011100 10111101 01001010 11100101 10100111 10001010 00110100 01000101 10111011 10011101 11000101 00110111 10011100 10111101 01001010 11100101 10100111 10001010 00110100 01000101 10111011 10011101 11000101 00110111 10011100 10111101 01001010 11100101 10100111 10001010 00110100 01000101 10111011 10011101 </text><text x="670" y="371" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1">           1    1                 1 0           0  0             0                         01                          1    1                 1 0           0  0             0                         01                          1    1                 1 0           0  0             0                         01               </text></g>
+<g class="bl" style="animation-duration:30.1s;animation-delay:-7.5s"><text x="670" y="388" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.68">11001011 11011101 10011010 00100000 10111000 00111100 00000001 11111011 01010011 10100110 11010011 10100010 11001011 11011101 10011010 00100000 10111000 00111100 00000001 11111011 01010011 10100110 11010011 10100010 11001011 11011101 10011010 00100000 10111000 00111100 00000001 11111011 01010011 10100110 11010011 10100010 </text><text x="670" y="388" textLength="2527.2" lengthAdjust="spacing" xml:space="preserve" fill="#ffffff" fill-opacity="1"> 1          1       0                            1        0    1                    0        1               1          1       0                            1        0    1                    0        1               1          1       0                            1        0    1                    0        1              </text></g>
 </g>
-<g class="mono fa" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   |  ( ( )  )   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   (  ( ) )  |   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   (  | ) )  (   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ) ) |  (   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fb" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   (  | ) |  (   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   |  ) ) (  (   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   )  ) | (  |   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   )  | ( (  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fc" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   )  ) ( (  |   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   )  | ( (  )   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   |  ( ( )  )   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ( | )  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-</g></g>
-<g transform="translate(1048 196) scale(1.0)" opacity="0.9">
-<g class="dB" style="animation-delay:-3s;animation-duration:12s;filter:drop-shadow(0 0 7px #b9a6ff66)">
-<g class="mono bell" font-size="14">
-<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.95">    .-"""""-.    </text>
-<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.9">  .'  . : .  '.  </text>
-<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.85"> /  . : : : .  \ </text>
-<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.8">|  : : : : : :  |</text>
-<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.75">|.'  : : : :  '.|</text>
-<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
-</g>
-<g class="mono fa" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   |  ( ( )  )   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   (  ( ) )  |   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   (  | ) )  (   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ) ) |  (   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fb" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   (  | ) |  (   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   |  ) ) (  (   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   )  ) | (  |   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   )  | ( (  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fc" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   )  ) ( (  |   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   )  | ( (  )   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   |  ( ( )  )   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ( | )  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-</g></g>
-<g transform="translate(1086 50) scale(0.7)" opacity="0.7">
-<g class="dB" style="animation-delay:-5s;animation-duration:8s;filter:drop-shadow(0 0 7px #7ce8f266)">
-<g class="mono bell" font-size="14">
-<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.95">    .-"""""-.    </text>
-<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.9">  .'  . : .  '.  </text>
-<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.85"> /  . : : : .  \ </text>
-<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.8">|  : : : : : :  |</text>
-<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.75">|.'  : : : :  '.|</text>
-<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
-</g>
-<g class="mono fa" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   |  ( ( )  )   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   (  ( ) )  |   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   (  | ) )  (   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ) ) |  (   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fb" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   (  | ) |  (   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   |  ) ) (  (   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   )  ) | (  |   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   )  | ( (  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fc" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.6">   )  ) ( (  |   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.5">   )  | ( (  )   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.4">   |  ( ( )  )   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.3">   (  ( | )  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#7ce8f2" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-</g></g>
-<g transform="translate(716 318) scale(0.62)" opacity="0.65">
-<g class="dA" style="animation-delay:-2s;animation-duration:13s;filter:drop-shadow(0 0 7px #b9a6ff66)">
-<g class="mono bell" font-size="14">
-<text x="0" y="15" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.95">    .-"""""-.    </text>
-<text x="0" y="30" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.9">  .'  . : .  '.  </text>
-<text x="0" y="45" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.85"> /  . : : : .  \ </text>
-<text x="0" y="60" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.8">|  : : : : : :  |</text>
-<text x="0" y="75" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.75">|.'  : : : :  '.|</text>
-<text x="0" y="90" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.7">'-.__~~~~~~~__.-'</text>
-</g>
-<g class="mono fa" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   |  ( ( )  )   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   (  ( ) )  |   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   (  | ) )  (   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ) ) |  (   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fb" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   (  | ) |  (   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   |  ) ) (  (   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   )  ) | (  |   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   )  | ( (  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-<g class="mono fc" font-size="14">
-<text x="0" y="105" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.6">   )  ) ( (  |   </text>
-<text x="0" y="120" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.5">   )  | ( (  )   </text>
-<text x="0" y="135" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.4">   |  ( ( )  )   </text>
-<text x="0" y="150" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.3">   (  ( | )  )   </text>
-<text x="0" y="165" textLength="142.8" lengthAdjust="spacing" xml:space="preserve" fill="#b9a6ff" fill-opacity="0.2">   .  . . .  .   </text>
-</g>
-</g></g>
+<rect class="scan" x="660" y="14" width="540" height="60" fill="url(#scanG)"/>
 </g>
 <g class="rise" style="animation-delay:.05s"><rect x="64" y="86" width="8" height="8" rx="2" fill="#d4af37"/><text x="84" y="95" class="mono" font-size="13" letter-spacing="3" fill="#9aa4b4" xml:space="preserve">BENGALURU  ·  OPEN TO WORK</text></g>
 <g class="rise" style="animation-delay:.2s"><text x="64" y="172" class="serif" font-size="70" font-weight="500" fill="#f1f4f8" letter-spacing="-1">H S <tspan fill="url(#gName)" font-style="italic">Bharath Surya</tspan></text></g>

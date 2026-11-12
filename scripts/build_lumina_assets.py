@@ -5,7 +5,7 @@ Generates the animated SVG assets for the GitHub profile README.
 GitHub renders SVGs through <img>, so there is no JavaScript: every animation
 here is plain CSS keyframes inside the SVG. The look combines two ideas:
 
-  * kurage    - dark "ocean" UI, cyan/violet accents, ASCII jellyfish,
+  * kurage    - dark "ocean" UI, cyan/violet accents, flowing binary streams,
                 a glass prompt composer with a rotating headline
   * lumina    - a full-bleed "interactive list": six slides, a circular glass
                 reveal between them, six different title animations, a 01/06
@@ -99,83 +99,55 @@ def svg_open(w, h, title, desc):
     )
 
 
+# binary stream geometry (monospace cells; textLength pins the width so every font lines up)
+CW = 7.8                                # cell width at 13px
+BIN_FS = 13
+BIN_BYTES = 12                          # bytes per repeating unit
+BIN_PERIOD = BIN_BYTES * 9 * CW         # px per unit: the scroll distance of one seamless loop
+
 BASE_CSS = f"""
 .mono{{font-family:{MONO}}} .sans{{font-family:{SANS}}} .serif{{font-family:{SERIF}}}
-@keyframes pulse{{0%,100%{{transform:scale(1,1)}}45%{{transform:scale(.93,1.06)}}}}
-@keyframes fa{{0%,33.3%{{opacity:1}}33.4%,100%{{opacity:0}}}}
-@keyframes fb{{0%,33.3%{{opacity:0}}33.4%,66.6%{{opacity:1}}66.7%,100%{{opacity:0}}}}
-@keyframes fc{{0%,66.6%{{opacity:0}}66.7%,100%{{opacity:1}}}}
-@keyframes driftA{{0%,100%{{transform:translate(0,0)}}50%{{transform:translate(16px,-24px)}}}}
-@keyframes driftB{{0%,100%{{transform:translate(0,0)}}50%{{transform:translate(-18px,-16px)}}}}
 @keyframes twinkle{{0%,100%{{opacity:.08}}50%{{opacity:.75}}}}
-.bell{{transform-box:fill-box;transform-origin:50% 0;animation:pulse 3.6s ease-in-out infinite}}
-.fa{{animation:fa 1.8s steps(1) infinite}} .fb{{animation:fb 1.8s steps(1) infinite}} .fc{{animation:fc 1.8s steps(1) infinite}}
-.dA{{animation:driftA 9s ease-in-out infinite}} .dB{{animation:driftB 11s ease-in-out infinite}}
 .tw{{animation:twinkle 4s ease-in-out infinite}}
+@keyframes bl{{to{{transform:translateX(-{BIN_PERIOD:.1f}px)}}}}
+@keyframes brr{{from{{transform:translateX(-{BIN_PERIOD:.1f}px)}}to{{transform:translateX(0)}}}}
+.bl{{animation:bl 30s linear infinite}} .brr{{animation:brr 30s linear infinite}}
+@keyframes scan{{0%{{transform:translateY(-60px);opacity:0}}15%,85%{{opacity:1}}100%{{transform:translateY(380px);opacity:0}}}}
+.scan{{animation:scan 5.5s cubic-bezier(.4,0,.6,1) infinite}}
 """
 
 # --------------------------------------------------------------------------
-# ASCII jellyfish (original design)
+# flowing binary streams (replaces the old ASCII jellyfish)
 # --------------------------------------------------------------------------
-CW, LH, FS = 8.4, 15, 14          # cell width, line height, font size
-COLS = 17
-BELL = [
-    '.-"""""-.',
-    ".'  . : .  '.",
-    "/  . : : : .  \\",
-    "|  : : : : : :  |",
-    "|.'  : : : :  '.|",
-    "'-.__~~~~~~~__.-'",
-]
-BELL_OP = [0.95, 0.9, 0.85, 0.8, 0.75, 0.7]
-TENT_OP = [0.6, 0.5, 0.4, 0.3, 0.2]
-TENT_COLS = (3, 6, 8, 10, 13)
+def _bit_unit(rnd):
+    base, hi = [], []
+    for _ in range(BIN_BYTES):
+        byte = "".join(rnd.choice("01") for _ in range(8))
+        base.append(byte + " ")
+        hi.append("".join(ch if rnd.random() < 0.11 else " " for ch in byte) + " ")
+    return "".join(base), "".join(hi)
 
 
-def tentacle_frames():
-    frames = []
-    for ph in (0.0, 2.1, 4.2):
-        rows = []
-        for k in range(len(TENT_OP)):
-            line = [" "] * COLS
-            for ci, c in enumerate(TENT_COLS):
-                v = math.sin(k * 0.9 + ci * 1.3 + ph)
-                ch = "(" if v > 0.35 else ")" if v < -0.35 else "|"
-                if k == len(TENT_OP) - 1:
-                    ch = "."
-                line[c] = ch
-            rows.append("".join(line))
-        frames.append(rows)
-    return frames
-
-
-FRAMES = tentacle_frames()
-
-
-def _row(y, s, op, color):
-    return (
-        f'<text x="0" y="{y}" textLength="{COLS * CW:.1f}" lengthAdjust="spacing" '
-        f'xml:space="preserve" fill="{color}" fill-opacity="{op}">{esc(s)}</text>'
-    )
-
-
-def jelly(x, y, scale, color, drift="dA", delay=0.0, dur=None, opacity=1.0):
-    out = [f'<g transform="translate({x} {y}) scale({scale})" opacity="{opacity}">']
-    style = f"animation-delay:{delay}s;" + (f"animation-duration:{dur}s;" if dur else "")
-    out.append(
-        f'<g class="{drift}" style="{style}filter:drop-shadow(0 0 7px {color}66)">'
-    )
-    out.append(f'<g class="mono bell" font-size="{FS}">')
-    for i, line in enumerate(BELL):
-        out.append(_row((i + 1) * LH, line.center(COLS), BELL_OP[i], color))
+def binary_field(x, y, w, h, seed=1, gap=17, color_a=CYAN, color_b=VIOLET, opacity=1.0):
+    """rows of 0/1 scrolling in alternating directions; a few bits per row glow white"""
+    rnd = random.Random(seed)
+    rows = int(h // gap)
+    reps = int((w + BIN_PERIOD) // BIN_PERIOD) + 2
+    out = [f'<g opacity="{opacity}" class="mono" font-size="{BIN_FS}">']
+    for r in range(rows):
+        base, hi = _bit_unit(rnd)
+        col = _lerp_hex(color_a, color_b, r / max(rows - 1, 1))
+        dur = rnd.uniform(16, 44)
+        cls = "bl" if r % 2 == 0 else "brr"
+        tl = len(base) * reps * CW
+        yy = y + r * gap
+        out.append(
+            f'<g class="{cls}" style="animation-duration:{dur:.1f}s;animation-delay:{-rnd.uniform(0, dur):.1f}s">'
+            f'<text x="{x}" y="{yy}" textLength="{tl:.1f}" lengthAdjust="spacing" xml:space="preserve" '
+            f'fill="{col}" fill-opacity="{rnd.uniform(0.38, 0.7):.2f}">{base * reps}</text>'
+            f'<text x="{x}" y="{yy}" textLength="{tl:.1f}" lengthAdjust="spacing" xml:space="preserve" '
+            f'fill="#ffffff" fill-opacity="1">{hi * reps}</text></g>')
     out.append("</g>")
-    base = (len(BELL) + 1) * LH
-    for f, cls in zip(FRAMES, ("fa", "fb", "fc")):
-        out.append(f'<g class="mono {cls}" font-size="{FS}">')
-        for k, line in enumerate(f):
-            out.append(_row(base + k * LH, line, TENT_OP[k], color))
-        out.append("</g>")
-    out.append("</g></g>")
     return "\n".join(out)
 
 
@@ -231,7 +203,7 @@ def build_hero():
 @media (prefers-reduced-motion:reduce){{*{{animation:none!important}} .hl0{{opacity:1}}}}
 """
     s = svg_open(W, H, f"{NAME} — profile banner",
-                 f"{NAME}, {ROLE.replace('  ', ' ')}. Animated ASCII jellyfish drift over a dark ocean grid "
+                 f"{NAME}, {ROLE.replace('  ', ' ')}. Rows of binary code stream across a dark grid "
                  f"while a prompt box rotates through what I build.")
     s += f"<style>{css}</style>\n<defs>{GRID_DEF}\n"
     s += (
@@ -243,8 +215,11 @@ def build_hero():
         f'<stop offset="0" stop-color="{CYAN}"/><stop offset="1" stop-color="{VIOLET}"/></linearGradient>\n'
         f'<linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{CYAN}" stop-opacity=".55"/>'
         f'<stop offset=".5" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="{VIOLET}" stop-opacity=".55"/></linearGradient>\n'
-        f'<mask id="fadeR"><linearGradient id="fr" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/>'
-        f'<stop offset=".18" stop-color="#fff"/></linearGradient><rect width="{W}" height="{H}" fill="url(#fr)"/></mask>\n'
+        f'<radialGradient id="bmg"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".85"/>'
+        f'<stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>\n'
+        f'<mask id="bm" maskUnits="userSpaceOnUse" x="660" y="14" width="540" height="410"><rect x="660" y="14" width="540" height="410" fill="url(#bmg)"/></mask>\n'
+        f'<linearGradient id="scanG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{CYAN}" stop-opacity="0"/>'
+        f'<stop offset=".5" stop-color="{CYAN}" stop-opacity=".30"/><stop offset="1" stop-color="{CYAN}" stop-opacity="0"/></linearGradient>\n'
         f'<clipPath id="clip"><rect width="{W}" height="{H}" rx="18"/></clipPath></defs>\n'
     )
     s += '<g clip-path="url(#clip)">\n'
@@ -252,12 +227,10 @@ def build_hero():
     s += f'<rect width="{W}" height="{H}" fill="url(#gC)"/><rect width="{W}" height="{H}" fill="url(#gV)"/>\n'
     s += plankton(34, 40, 1180, 20, 420) + "\n"
 
-    # jellyfish field
-    s += '<g mask="url(#fadeR)">\n'
-    s += jelly(770, 58, 1.7, CYAN, "dA", 0, 10, .95) + "\n"
-    s += jelly(1048, 196, 1.0, VIOLET, "dB", -3, 12, .9) + "\n"
-    s += jelly(1086, 50, 0.7, CYAN, "dB", -5, 8, .7) + "\n"
-    s += jelly(716, 318, 0.62, VIOLET, "dA", -2, 13, .65) + "\n"
+    # binary data stream, fading out toward the edges
+    s += '<g mask="url(#bm)">\n'
+    s += binary_field(670, 48, 520, 360, seed=3) + "\n"
+    s += '<rect class="scan" x="660" y="14" width="540" height="60" fill="url(#scanG)"/>\n'
     s += "</g>\n"
 
     # copy
@@ -430,6 +403,9 @@ def build_lumina():
           f'<stop offset=".55" stop-color="{INK}" stop-opacity="0"/></linearGradient>\n')
     for j in range(1, N + 1):
         s += f'<mask id="m{j}"><circle class="rv" cx="{CX}" cy="{CY}" r="{RMAX}" fill="#fff" style="animation-name:rv{j}"/></mask>\n'
+    s += (f'<radialGradient id="lmg"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#fff" stop-opacity=".8"/>'
+          f'<stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'
+          f'<mask id="lm" maskUnits="userSpaceOnUse" x="740" y="104" width="440" height="230"><rect x="740" y="104" width="440" height="230" fill="url(#lmg)"/></mask>\n')
     s += f'<clipPath id="clip"><rect width="{LW}" height="{LHT}" rx="18"/></clipPath></defs>\n'
 
     s += '<g clip-path="url(#clip)">\n'
@@ -441,8 +417,7 @@ def build_lumina():
               f'style="animation-name:rm{j}"/>\n')
     s += f'<rect width="{LW}" height="{LHT}" fill="url(#grid)"/>\n'
     s += f'<rect width="{LW}" height="{LHT}" fill="url(#shade)"/><rect width="{LW}" height="{LHT}" fill="url(#shadeL)"/>\n'
-    s += jelly(1010, 36, 1.15, CYAN, "dB", -2, 10, .55) + "\n"
-    s += jelly(560, 150, 0.6, VIOLET, "dA", -4, 12, .4) + "\n"
+    s += '<g mask="url(#lm)">\n' + binary_field(760, 124, 400, 190, seed=5, opacity=0.55) + "\n</g>\n"
 
     # chrome
     s += (f'<text x="{LW - 64}" y="84" text-anchor="end" class="mono" font-size="12" letter-spacing="3" fill="{FAINT}">'
