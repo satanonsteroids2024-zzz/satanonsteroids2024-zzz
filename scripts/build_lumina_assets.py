@@ -626,10 +626,10 @@ def portrait_density(photo):
     return np.clip(d * np.where(m > 0.5, np.maximum(fade, 0.0), 1), 0, 1)
 
 
-def portrait_dots(photo):
+def portrait_dots(photo, step=2.2):
     d = portrait_density(photo)
     rnd = random.Random(5)
-    step, dots = 2.2, []
+    dots = []
     for y0 in [k * step for k in range(int(PH / step) + 1)]:
         for x0 in [k * step for k in range(int(PW / step) + 1)]:
             x, y = x0 + rnd.uniform(0, step), y0 + rnd.uniform(0, step)
@@ -685,7 +685,7 @@ def _text_dots(text, ttf, size, x, y, step, rnd):
 
 
 def build_intro(photo):
-    dots = portrait_dots(photo)
+    dots = portrait_dots(photo, 1.55)          # denser sampling than the avatar
     rnd = random.Random(9)
     CP = CELL * I_SCALE                              # cell size on the canvas (24 px)
 
@@ -693,22 +693,22 @@ def build_intro(photo):
     parts = []                                       # kind "p" = portrait, "t" = text
     for x, y, v in dots:
         cx, cy = I_OX + x * 2 * I_SCALE, I_OY + y * 2 * I_SCALE
-        sw = (1.8, 2.5, 3.3)[0 if v < 0.38 else 1 if v < 0.7 else 2]
+        sw = (1.1, 1.55, 2.1)[0 if v < 0.38 else 1 if v < 0.7 else 2]
         parts.append((cx, cy, _aurora(x, y), sw, "p"))
     crisp = []                                       # real text that is swapped for particles during the burst
     L1, L2 = INTRO["line1"], INTRO["line2"]
     for text, ttf, size, x, y, step, sw, colour, anim in (
-            (L1, SERIF_TTF, 68, 558, 196, 2.4, 2.0, TEXT, "serif"),
-            (L2, SERIF_I_TTF, 58, 558, 264, 2.3, 1.9, "grad", "serif-i")):
+            (L1, SERIF_TTF, 68, 558, 196, 1.75, 1.35, TEXT, "serif"),
+            (L2, SERIF_I_TTF, 58, 558, 264, 1.7, 1.3, "grad", "serif-i")):
         pts, w = _text_dots(text, ttf, size, x, y, step, rnd)
         for px, py in pts:
             c = colour if colour != "grad" else _lerp_hex(CYAN, VIOLET, (px - 560) / 440)
             parts.append((px, py, c, sw, "t"))
         crisp.append((anim, text, x, y, size, w))
     for i, line in enumerate(INTRO["para"]):
-        pts, w = _text_dots(line, SANS_TTF, 18, 560, 316 + i * 29, 1.55, rnd)
+        pts, w = _text_dots(line, SANS_TTF, 18, 560, 316 + i * 29, 1.15, rnd)
         for px, py in pts:
-            parts.append((px, py, TEXT if i == 0 else MUTED, 1.3, "t"))
+            parts.append((px, py, TEXT if i == 0 else MUTED, 0.95, "t"))
         crisp.append(("para", line, 560, 316 + i * 29, 18, w))
 
     # ---- group particles: spatial cell > speed bin (burst) --------------------------
@@ -723,7 +723,7 @@ def build_intro(photo):
         dist_bc = math.hypot(px - BC[0], py - BC[1])
         bins = {}
         for cx, cy, col, sw in pts:
-            bins.setdefault(rnd.randrange(4), {}).setdefault((col, sw), []).append((round(cx), round(cy)))
+            bins.setdefault(rnd.randrange(4), {}).setdefault((col, sw), []).append((round(cx * 2) / 2, round(cy * 2) / 2))
         inner = ""
         for b, paths in sorted(bins.items()):
             a = away + rnd.uniform(-0.2, 0.2)
@@ -731,7 +731,7 @@ def build_intro(photo):
             vx, vy = math.cos(a) * mag + 30, math.sin(a) * mag - 40
             wa = rnd.uniform(0, 6.283)
             delay = TB + min(dist_bc, 800) / 800 * 0.55 + rnd.uniform(0, 0.15)
-            body = "".join(f'<path stroke="{col}" stroke-width="{sw}" d="' + "".join(f"M{x} {y}h0" for x, y in xy) + '"/>'
+            body = "".join(f'<path stroke="{col}" stroke-width="{sw}" d="' + "".join(f"M{x:g} {y:g}h0" for x, y in xy) + '"/>'
                            for (col, sw), xy in sorted(paths.items()))
             inner += (f'<g class="bp" style="--vx:{vx:.0f}px;--vy:{vy:.0f}px;--wx:{math.cos(wa) * 50:.0f}px;'
                       f'--wy:{math.sin(wa) * 50:.0f}px;animation-delay:{delay:.2f}s">{body}</g>')
