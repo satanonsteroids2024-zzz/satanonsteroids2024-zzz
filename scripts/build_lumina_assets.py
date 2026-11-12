@@ -600,30 +600,28 @@ SERIF_TTF, SERIF_I_TTF, SANS_TTF = ("/System/Library/Fonts/Supplemental/Georgia.
 
 
 def portrait_density(photo):
+    """tone map of the portrait (0..1 per pixel) that decides where particles go and how bright they are.
+    Built for likeness: faithful mid-tones, local contrast so hair/face structure survives, a floor so the
+    dark hair is never empty, and a soft fade at the cut edges."""
     import numpy as np
     from PIL import Image, ImageFilter, ImageOps, ImageDraw
     g = Image.open(photo).convert("L").crop(PORTRAIT_CROP).resize((PW, PH), Image.LANCZOS)
-    g = ImageOps.autocontrast(g, cutoff=1)
+    g = ImageOps.autocontrast(g, cutoff=0.5)
     mask = Image.new("L", (PW, PH), 0)
     ImageDraw.Draw(mask).polygon(PORTRAIT_POLY, fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(1.6))
-    m = np.asarray(mask, float) / 255
+    mask = mask.filter(ImageFilter.GaussianBlur(1.2))
     f = lambda im: np.asarray(im, float) / 255
-    a = f(g)
-    blur = f(g.filter(ImageFilter.GaussianBlur(10)))
-    blur2 = f(g.filter(ImageFilter.GaussianBlur(4)))
-    blur6 = f(g.filter(ImageFilter.GaussianBlur(6)))
-    local = np.clip(0.5 + (a - blur) * 2.6, 0, 1)
-    edge = np.clip((np.abs(np.gradient(a, axis=1)) + np.abs(np.gradient(a, axis=0))) * 10, 0, 1)
-    rim = np.clip(m - f(mask.filter(ImageFilter.GaussianBlur(7))), 0, 1) * 2.2
-    detail = a - blur2
-    sharp = np.clip(a + 1.5 * (a - blur6), 0, 1)
-    tone = np.where(sharp < 0.55, sharp, 0.55 + 0.35 * (sharp - 0.55))
-    d = (0.10 + 0.78 * tone + 1.2 * np.clip(detail, 0, 1) - 1.4 * np.clip(-detail, 0, 1)
-         + 0.28 * edge + 0.45 * rim + 0.12 * (1 - a) ** 2 * local) * m
+    m, a = f(mask), f(g)
+    big, mid = f(g.filter(ImageFilter.GaussianBlur(18))), f(g.filter(ImageFilter.GaussianBlur(3)))
+    local = np.clip(0.5 + (a - big) * 1.6, 0, 1)
+    tone = np.clip(0.62 * a ** 0.65 + 0.38 * local, 0, 1)
+    detail = np.clip((a - mid) * 2.2, -0.5, 0.5)
+    d = np.clip(0.18 + 0.84 * tone + 1.15 * detail, 0, 1)
+    rim = np.clip(m - f(mask.filter(ImageFilter.GaussianBlur(5))), 0, 1)
+    d = np.clip(d + 0.25 * rim, 0, 1) * m
     yy, xx = np.mgrid[0:PH, 0:PW]
     fade = (np.clip((PH - yy) / 120, 0, 1) ** 0.8) * np.clip(xx / 45, 0, 1) * np.clip((PW - xx) / 45, 0, 1)
-    return np.clip(d * np.where(m > 0.5, np.maximum(fade, 0.0), 1), 0, 1)
+    return d * np.where(m > 0.5, fade, 1)
 
 
 def portrait_dots(photo, step=2.2):
@@ -636,7 +634,7 @@ def portrait_dots(photo, step=2.2):
             if x >= PW or y >= PH:
                 continue
             v = float(d[int(y), int(x)])
-            if rnd.random() < v ** 1.15 * 0.8:
+            if rnd.random() < v * 0.9:
                 dots.append((x, y, v))
     return dots
 
@@ -653,8 +651,7 @@ AURORA = ("#7ce8f2", "#8fb4ff", "#b9a6ff", "#e79bff", "#ff8fc8")   # cyan > blue
 
 def _aurora(x, y):
     """particle colour: a soft aurora sweeping diagonally across the portrait (quantised to keep paths few)"""
-    t = min(max(x / PW * 0.65 + y / PH * 0.35, 0.0), 1.0)
-    t = round(t * 14) / 14
+    t = min(max((x / PW * 0.65 + y / PH * 0.35 - 0.22) / 0.62, 0.0), 1.0)   # stretched so the face stays cyan-ish
     seg = t * (len(AURORA) - 1)
     k = min(int(seg), len(AURORA) - 2)
     return _lerp_hex(AURORA[k], AURORA[k + 1], seg - k)
@@ -693,8 +690,8 @@ def build_intro(photo):
     parts = []                                       # kind "p" = portrait, "t" = text
     for x, y, v in dots:
         cx, cy = I_OX + x * 2 * I_SCALE, I_OY + y * 2 * I_SCALE
-        sw = (1.1, 1.55, 2.1)[0 if v < 0.38 else 1 if v < 0.7 else 2]
-        parts.append((cx, cy, _aurora(x, y), sw, "p"))
+        lvl = 0 if v < 0.4 else 1 if v < 0.7 else 2
+        parts.append((cx, cy, lvl, (1.0, 1.5, 2.0)[lvl], "p"))
     crisp = []                                       # real text that is swapped for particles during the burst
     L1, L2 = INTRO["line1"], INTRO["line2"]
     for text, ttf, size, x, y, step, sw, colour, anim in (
@@ -718,11 +715,14 @@ def build_intro(photo):
     groups = {"p": [], "t": []}
     for (kind, gx, gy), pts in sorted(cells.items()):
         px, py = (gx + 0.5) * CP, (gy + 0.5) * CP
+        base = _lerp_hex(_aurora((px - I_OX) / (2 * I_SCALE), (py - I_OY) / (2 * I_SCALE)), "#ffffff", 0.3) if kind == "p" else None
         # burst vectors: away from the burst centre, with a shockwave delay that grows with distance
         away = math.atan2(py - BC[1], px - BC[0])
         dist_bc = math.hypot(px - BC[0], py - BC[1])
         bins = {}
         for cx, cy, col, sw in pts:
+            if base:                                    # portrait: aurora colour, dimmed by tone level
+                col = _lerp_hex("#04060a", base, (0.55, 0.8, 1.0)[col])
             bins.setdefault(rnd.randrange(4), {}).setdefault((col, sw), []).append((round(cx * 2) / 2, round(cy * 2) / 2))
         inner = ""
         for b, paths in sorted(bins.items()):
