@@ -23,8 +23,9 @@ import random
 # CONFIG - change these and re-run
 # --------------------------------------------------------------------------
 NAME = "H S Bharath Surya"
-ROLE = "AI Systems Architect  ·  CS @ Newton School of Technology"
-EYEBROW = "BENGALURU  ·  OPEN TO WORK"
+ROLE = "Multi-agent systems  ·  LLM routing  ·  human-in-the-loop AI"
+EYEBROW = "WHAT I BUILD"
+HERO_HEAD = ("Sovereign", "by design.")   # white word + gradient italic word (the name lives in the intro)
 HEADLINES = [  # words between *asterisks* get the accent colour
     "Ship *multi-agent* systems that stay accountable",
     "Route *LLMs* across Gemini, Groq & Ollama",
@@ -267,8 +268,8 @@ def build_hero():
 .blink{{animation:blink 1.1s steps(1) infinite}}
 @media (prefers-reduced-motion:reduce){{*{{animation:none!important}} .hl0{{opacity:1}}}}
 """
-    s = svg_open(W, H, f"{NAME} — profile banner",
-                 f"{NAME}, {ROLE.replace('  ', ' ')}. Rows of binary code stream across a dark grid "
+    s = svg_open(W, H, f"{' '.join(HERO_HEAD)} — banner",
+                 f"{' '.join(HERO_HEAD)} {ROLE.replace('  ', ' ')}. Rows of binary code stream across a dark grid "
                  f"while a prompt box rotates through what I build.")
     s += f"<style>{css}</style>\n<defs>{GRID_DEF}\n"
     s += (
@@ -276,7 +277,7 @@ def build_hero():
         f'<stop offset="1" stop-color="{CYAN}" stop-opacity="0"/></radialGradient>\n'
         f'<radialGradient id="gV" cx="12%" cy="105%" r="60%"><stop offset="0" stop-color="{VIOLET}" stop-opacity=".22"/>'
         f'<stop offset="1" stop-color="{VIOLET}" stop-opacity="0"/></radialGradient>\n'
-        f'<linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="170" y1="0" x2="560" y2="0">'
+        f'<linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="330" y1="0" x2="640" y2="0">'
         f'<stop offset="0" stop-color="{CYAN}"/><stop offset="1" stop-color="{VIOLET}"/></linearGradient>\n'
         f'<linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{CYAN}" stop-opacity=".55"/>'
         f'<stop offset=".5" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="{VIOLET}" stop-opacity=".55"/></linearGradient>\n'
@@ -302,9 +303,8 @@ def build_hero():
     # copy
     s += f'<g class="rise" style="animation-delay:.05s"><rect x="64" y="86" width="8" height="8" rx="2" fill="{GOLD}"/>'
     s += f'<text x="84" y="95" class="mono" font-size="13" letter-spacing="3" fill="{MUTED}" xml:space="preserve">{esc(EYEBROW)}</text></g>\n'
-    first, rest = NAME.split(" ", 2)[0:2], NAME.split(" ", 2)[2]
     s += (f'<g class="rise" style="animation-delay:.2s"><text x="64" y="172" class="serif" font-size="70" font-weight="500" '
-          f'fill="{TEXT}" letter-spacing="-1">{esc(" ".join(first))} <tspan fill="url(#gName)" font-style="italic">{esc(rest)}</tspan></text></g>\n')
+          f'fill="{TEXT}" letter-spacing="-1">{esc(HERO_HEAD[0])} <tspan fill="url(#gName)" font-style="italic">{esc(HERO_HEAD[1])}</tspan></text></g>\n')
     s += (f'<g class="rise" style="animation-delay:.35s"><text x="66" y="214" class="sans" font-size="19" fill="{MUTED}" '
           f'xml:space="preserve">{esc(ROLE)}</text></g>\n')
 

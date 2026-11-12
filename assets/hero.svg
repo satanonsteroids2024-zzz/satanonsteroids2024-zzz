@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="t d">
-<title id="t">H S Bharath Surya — profile banner</title>
-<desc id="d">H S Bharath Surya, AI Systems Architect · CS @ Newton School of Technology. Rows of binary code stream across a dark grid while a prompt box rotates through what I build.</desc>
+<title id="t">Sovereign by design. — banner</title>
+<desc id="d">Sovereign by design. Multi-agent systems · LLM routing · human-in-the-loop AI. Rows of binary code stream across a dark grid while a prompt box rotates through what I build.</desc>
 <style>
 .mono{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace} .sans{font-family:Geist,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif} .serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif}
 @keyframes twinkle{0%,100%{opacity:.08}50%{opacity:.75}}
@@ -34,7 +34,7 @@
 <defs><pattern id="grid" width="10" height="15" patternUnits="userSpaceOnUse"><path d="M10 0V15M0 15H10" stroke="#fff" stroke-opacity=".035" fill="none"/></pattern>
 <radialGradient id="gC" cx="78%" cy="18%" r="55%"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".20"/><stop offset="1" stop-color="#7ce8f2" stop-opacity="0"/></radialGradient>
 <radialGradient id="gV" cx="12%" cy="105%" r="60%"><stop offset="0" stop-color="#b9a6ff" stop-opacity=".22"/><stop offset="1" stop-color="#b9a6ff" stop-opacity="0"/></radialGradient>
-<linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="170" y1="0" x2="560" y2="0"><stop offset="0" stop-color="#7ce8f2"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient>
+<linearGradient id="gName" gradientUnits="userSpaceOnUse" x1="330" y1="0" x2="640" y2="0"><stop offset="0" stop-color="#7ce8f2"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient>
 <linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ce8f2" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="#b9a6ff" stop-opacity=".55"/></linearGradient>
 <radialGradient id="bmg"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <mask id="bm" maskUnits="userSpaceOnUse" x="660" y="14" width="540" height="410"><rect x="660" y="14" width="540" height="410" fill="url(#bmg)"/></mask>
@@ -173,9 +173,9 @@
 <text x="935" y="448" text-anchor="middle" class="mono" font-size="10" letter-spacing="3" fill="#9aa4b4" fill-opacity=".6" stroke="none">0x7F  ·  SYNC  OK</text>
 <circle class="tw" cx="873" cy="19" r="2.4" fill="#7ce8f2" stroke="none"/>
 </g>
-<g class="rise" style="animation-delay:.05s"><rect x="64" y="86" width="8" height="8" rx="2" fill="#d4af37"/><text x="84" y="95" class="mono" font-size="13" letter-spacing="3" fill="#9aa4b4" xml:space="preserve">BENGALURU  ·  OPEN TO WORK</text></g>
-<g class="rise" style="animation-delay:.2s"><text x="64" y="172" class="serif" font-size="70" font-weight="500" fill="#f1f4f8" letter-spacing="-1">H S <tspan fill="url(#gName)" font-style="italic">Bharath Surya</tspan></text></g>
-<g class="rise" style="animation-delay:.35s"><text x="66" y="214" class="sans" font-size="19" fill="#9aa4b4" xml:space="preserve">AI Systems Architect  ·  CS @ Newton School of Technology</text></g>
+<g class="rise" style="animation-delay:.05s"><rect x="64" y="86" width="8" height="8" rx="2" fill="#d4af37"/><text x="84" y="95" class="mono" font-size="13" letter-spacing="3" fill="#9aa4b4" xml:space="preserve">WHAT I BUILD</text></g>
+<g class="rise" style="animation-delay:.2s"><text x="64" y="172" class="serif" font-size="70" font-weight="500" fill="#f1f4f8" letter-spacing="-1">Sovereign <tspan fill="url(#gName)" font-style="italic">by design.</tspan></text></g>
+<g class="rise" style="animation-delay:.35s"><text x="66" y="214" class="sans" font-size="19" fill="#9aa4b4" xml:space="preserve">Multi-agent systems  ·  LLM routing  ·  human-in-the-loop AI</text></g>
 <g class="rise" style="animation-delay:.5s"><rect x="64" y="250" width="640" height="78" rx="22" fill="#0a0e15" fill-opacity=".82" stroke="url(#gStroke)" stroke-width="1.2"/><text x="94" y="298" class="mono" font-size="22" fill="#7ce8f2">›</text><text class="hl sans hl0" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:0.0s">Ship <tspan fill="#7ce8f2">multi-agent</tspan> systems that stay accountable</text><text class="hl sans hl1" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:3.0s">Route <tspan fill="#7ce8f2">LLMs</tspan> across Gemini, Groq &amp; Ollama</text><text class="hl sans hl2" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:6.0s">Automate the <tspan fill="#7ce8f2">boring</tspan> parts with n8n &amp; Zapier</text><text class="hl sans hl3" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:9.0s">Keep a <tspan fill="#7ce8f2">human</tspan> in the loop, always</text><text class="hl sans hl4" x="122" y="297" font-size="24" fill="#f1f4f8" style="animation-delay:12.0s">Run <tspan fill="#7ce8f2">local</tspan>. Stay sovereign.</text></g>
 <text x="68" y="362" class="mono" font-size="12" letter-spacing="1.5" fill="#808a9a">python  ·  fastapi  ·  llm routing  ·  agents  ·  automation</text>
 </g>
