@@ -4,8 +4,6 @@
 
 <img src="assets/lumina.svg" width="100%" alt="Six slides on a loop: Hello, ARES-X Titan (a sovereign AI intelligence OS with human approval gates), Voice AI in 3D, Quiet Automation (n8n, Zapier, webhooks, REST), a NIFTY futures research tool, and Let's work together."/>
 
-<img src="assets/burst.svg" width="100%" alt="What I build: Engineering, Sovereign, AI Systems. A dot-matrix portrait bursts into a cloud of particles and pulls back together."/>
-
 <img src="assets/composer.svg" width="100%" alt="Prompt box: What are we building next?"/>
 
 <p align="center">
